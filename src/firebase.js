@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyC38mhvotDS0zZ7STJCzWjZXyh-4KLNRAU",
     authDomain: "cookbook-f1450.firebaseapp.com",

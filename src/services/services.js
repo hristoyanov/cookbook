@@ -1,5 +1,4 @@
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-
+import { getFirestore, getDocs, collection, addDoc } from 'firebase/firestore';
 import { app } from '../firebase';
 
 
@@ -13,7 +12,21 @@ async function getRecipes(db) {
     console.log(recipeList);
 }
 
+async function addRecipe(name, imageURL, ingredients, prepTime, prepSteps) {
+    const newRecipe = await addDoc(collection(db, 'recipes'), {
+        name,
+        imageURL,
+        ingredients,
+        prepTime,
+        prepSteps
+    });
+
+    console.log(newRecipe);
+    console.log('Document written with ID: ', newRecipe.id);
+}
+
 export {
     db,
-    getRecipes
+    getRecipes,
+    addRecipe
 };

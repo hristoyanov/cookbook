@@ -1,6 +1,9 @@
+import AddRecipe from './components/AddRecipe/AddRecipe';
+
 import { db, getRecipes } from './services/services';
 
 import './App.css';
+
 
 function App() {
     const onClickHandler = () => {
@@ -16,9 +19,10 @@ function App() {
             </header>
             <div className="btn-container">
                 <button className="get-recipes-btn" onClick={onClickHandler}>
-                Load Recipes
-            </button>
-        </div>
+                    Load Recipes
+                </button>
+            </div>
+            <AddRecipe />
         </div >
     );
 }
