@@ -1,0 +1,41 @@
+.page-header {
+    margin-bottom: 50px;
+}
+
+.page-header-nav {
+    padding: 20px;
+    display: flex;
+    background: lightskyblue;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-name-link {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+    color: blue;
+}
+
+.page-header-nav-links-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.page-header-nav-links-list li {
+    margin: 0 10px;
+}
+
+.page-header-nav-links-list li a {
+    text-decoration: none;
+    font-weight: bold;
+    color: blue;
+}
+
+
+.user-info {
+    font-weight: bold;
+    color: white;
+}

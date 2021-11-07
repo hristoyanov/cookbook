@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { getAuth, signOut } from './firebase';
 
+import Header from './components/Header/Header';
 import Register from './components/Register/Register';
 import LandingPage from './components/LandingPage/LandingPage';
 import AddRecipe from './components/AddRecipe/AddRecipe';
@@ -29,6 +30,8 @@ function App() {
 
     return (
         <div className="container">
+            <Header />
+
             <Switch>
                 <Route path="/" exact component={LandingPage} />
                 <Route path="/recipes/add" component={AddRecipe} />
