@@ -13,16 +13,13 @@ async function getRecipes(db) {
 }
 
 async function addRecipe(name, imageURL, ingredients, prepTime, prepSteps) {
-    const newRecipe = await addDoc(collection(db, 'recipes'), {
+    return await addDoc(collection(db, 'recipes'), {
         name,
         imageURL,
         ingredients,
         prepTime,
         prepSteps
     });
-
-    console.log(newRecipe);
-    console.log('Document written with ID: ', newRecipe.id);
 }
 
 export {

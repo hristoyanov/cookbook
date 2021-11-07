@@ -1,9 +1,0 @@
-.add-recipe {
-    width: 50%;
-    margin: 50px auto;
-}
-
-.add-recipe-form {
-    display: flex;
-    flex-direction: column;
-}

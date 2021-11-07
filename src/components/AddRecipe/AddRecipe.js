@@ -4,7 +4,7 @@ import './AddRecipe.css';
 
 
 const AddRecipe = () => {
-    const onAddRecipeHandler = (e) => {
+     async function onAddRecipeHandler(e) {
         e.preventDefault();
 
         const name = e.target.name.value.trim();
@@ -13,7 +13,7 @@ const AddRecipe = () => {
         const prepTime = Number(e.target.prepTime.value.trim());
         const prepSteps = e.target.prepSteps.value.trim();
 
-        addRecipe(name, imageURL, ingredients, prepTime, prepSteps);
+        await addRecipe(name, imageURL, ingredients, prepTime, prepSteps);
     }
 
     return (
@@ -25,7 +25,7 @@ const AddRecipe = () => {
                 <label htmlFor="image-url">Image</label>
                 <input type="text" name="imageURL" id="image-url" required/>
                 <label htmlFor="ingredients">Ingredients</label>
-                <textarea name="ingredients" id="ingredients" cols="30" rows="5" required></textarea>
+                <textarea name="ingredients" id="ingredients" cols="30" rows="10" required></textarea>
                 <label htmlFor="prep-time">Preparation time (in minutes)</label>
                 <input type="number" name="prepTime" id="prep-time" min="0" required/>
                 <label htmlFor="prep-steps">Preparation Steps</label>

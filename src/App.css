@@ -1,3 +1,42 @@
-.App {
+.container {
   text-align: center;
+}
+
+body {
+    margin: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 25%;
+    padding: 10px;
+    background: lightgray;
+    border-radius: 10px;
+}
+
+form legend {
+    font-weight: bold;
+    font-size: 36px;
+}
+
+form label {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+form textarea {
+    resize: none;
+}
+
+.submit-btn {
+    width: 50%;
+    margin: 10px auto;
 }
