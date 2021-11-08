@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword } from '../../firebase';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from '../../firebase';
 
 
 const SignUp = ({ history }) => {
@@ -6,6 +6,7 @@ const SignUp = ({ history }) => {
         e.preventDefault();
 
         const email = e.target.email.value.trim();
+        const displayName = e.target.displayName.value.trim();
         const password = e.target.password.value.trim();
         const passwordRepeat = e.target.passwordRepeat.value.trim();
 
@@ -18,6 +19,10 @@ const SignUp = ({ history }) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+
+                updateProfile(user, {
+                    displayName: displayName
+                });
 
                 history.push('/');
 
@@ -37,6 +42,8 @@ const SignUp = ({ history }) => {
                 <legend>Sign Up</legend>
                 <label htmlFor="email">Email</label>
                 <input type="text" name="email" id="email" required />
+                <label htmlFor="display-name">Display Name/Username</label>
+                <input type="text" name="displayName" id="display-name" required />
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" required />
                 <label htmlFor="repeat-password">Repeat Password</label>
