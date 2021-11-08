@@ -1,5 +1,6 @@
 .container {
   text-align: center;
+  padding-bottom: 50px;
 }
 
 body {
@@ -18,8 +19,8 @@ form {
     flex-direction: column;
     margin: 0 auto;
     width: 25%;
-    padding: 10px;
-    background: lightgray;
+    padding: 50px;
+    background: lightskyblue;
     border-radius: 10px;
 }
 
@@ -35,9 +36,24 @@ form label {
 
 form textarea {
     resize: none;
+    border: none;
+    border-radius: 5px;
+}
+
+form input {
+    border: none;
+    height: 35px;
+    border-radius: 5px;
 }
 
 .submit-btn {
     width: 50%;
-    margin: 10px auto;
+    margin: 50px auto 0 auto;
+    border: none;
+    background: white;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
 }

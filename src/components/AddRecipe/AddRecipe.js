@@ -1,8 +1,5 @@
 import { addRecipe } from '../../services/services';
 
-import './AddRecipe.css';
-
-
 const AddRecipe = () => {
      async function onAddRecipeHandler(e) {
         e.preventDefault();
@@ -25,11 +22,11 @@ const AddRecipe = () => {
                 <label htmlFor="image-url">Image</label>
                 <input type="text" name="imageURL" id="image-url" required/>
                 <label htmlFor="ingredients">Ingredients</label>
-                <textarea name="ingredients" id="ingredients" cols="30" rows="10" required></textarea>
+                <textarea name="ingredients" id="ingredients" cols="30" rows="7" required></textarea>
                 <label htmlFor="prep-time">Preparation time (in minutes)</label>
                 <input type="number" name="prepTime" id="prep-time" min="0" required/>
                 <label htmlFor="prep-steps">Preparation Steps</label>
-                <textarea name="prepSteps" id="prep-steps" cols="30" rows="10" required></textarea>
+                <textarea name="prepSteps" id="prep-steps" cols="30" rows="7" required></textarea>
                 <button className="submit-btn">Add Recipe</button>
             </form>
         </section>
