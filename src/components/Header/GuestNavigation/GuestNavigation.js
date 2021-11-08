@@ -1,13 +1,13 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const GuestNavigation = () => {
     return (
         <ul className="page-header-nav-links-list">
             <li>
-                <NavLink to="/register">Register</NavLink>
+                <NavLink to="/sign-up">Sign Up</NavLink>
             </li>
             <li>
-                <NavLink to="#">Sign In</NavLink>
+                <NavLink to="/sign-in">Sign In</NavLink>
             </li>
         </ul>
     );

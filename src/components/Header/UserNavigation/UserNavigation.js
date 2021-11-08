@@ -13,7 +13,7 @@ const UserNavigation = (props) => {
                 <NavLink to="/recipes/add">Add Recipe</NavLink>
             </li>
             <li>
-                <Link to="/logout">Sign Out</Link>
+                <Link to="/sign-out">Sign Out</Link>
             </li>
         </ul>
     );

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
 import { getAuth } from '../../firebase';
-import UserNavigation from '../UserNavigation/UserNavigation';
-import GuestNavigation from '../GuestNavigation/GuestNavigation';
+import UserNavigation from './UserNavigation/UserNavigation';
+import GuestNavigation from './GuestNavigation/GuestNavigation';
 
 import './Header.css';
 

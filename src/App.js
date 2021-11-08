@@ -4,7 +4,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { getAuth, signOut } from './firebase';
 
 import Header from './components/Header/Header';
-import Register from './components/Register/Register';
+import SignUp from './components/SignUp/SignUp';
+import SignIn from './components/SignIn/SignIn';
 import LandingPage from './components/LandingPage/LandingPage';
 import AddRecipe from './components/AddRecipe/AddRecipe';
 
@@ -35,8 +36,9 @@ function App() {
             <Switch>
                 <Route path="/" exact component={LandingPage} />
                 <Route path="/recipes/add" component={AddRecipe} />
-                <Route path="/register" component={Register} />
-                <Route path="/logout" render={() => {
+                <Route path="/sign-up" component={SignUp} />
+                <Route path="/sign-in" component={SignIn} />
+                <Route path="/sign-out" render={() => {
                     signOut(getAuth());
 
                     return <Redirect to="/" />
