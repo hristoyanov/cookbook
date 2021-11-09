@@ -1,8 +1,8 @@
-import { db, getRecipes } from '../../services/services';
+import { getRecipes } from '../../services/services';
 
 const LandingPage = () => {
     const  onClickHandler = async () => {
-        await getRecipes(db);
+        await getRecipes();
     }
 
     return (

@@ -5,16 +5,17 @@
 .page-header-nav {
     padding: 20px;
     display: flex;
-    background: lightskyblue;
+    background: orange;
     justify-content: space-between;
     align-items: center;
+    color: white;
 }
 
 .page-name-link {
     text-decoration: none;
     font-weight: bold;
     font-size: 24px;
-    color: blue;
+    color: white;
 }
 
 .page-header-nav-links-list {
@@ -31,11 +32,10 @@
 .page-header-nav-links-list li a {
     text-decoration: none;
     font-weight: bold;
-    color: blue;
+    color: white;
 }
 
 
 .user-info {
     font-weight: bold;
-    color: white;
 }

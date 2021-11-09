@@ -1,0 +1,35 @@
+.recipes-list-item {
+    background: orange;
+    margin: 0 10px;
+    padding: 0 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+.recipes-list-item-img img {
+    width: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.recipes-list-item-prep-time {
+    font-weight: bold;
+}
+
+.recipes-list-item-prep-time i {
+    margin-right: 10px;
+}
+
+.recipes-list-item-details-btn {
+    margin: 25px 0;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    background: white;
+}
+
+.recipes-list-item-details-btn a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}

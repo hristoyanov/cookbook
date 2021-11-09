@@ -1,3 +1,5 @@
+@import url('https://use.fontawesome.com/releases/v5.15.4/css/all.css');
+
 .container {
   text-align: center;
   padding-bottom: 50px;
@@ -20,8 +22,9 @@ form {
     margin: 0 auto;
     width: 25%;
     padding: 50px;
-    background: lightskyblue;
+    background: orange;
     border-radius: 10px;
+    color: white;
 }
 
 form legend {

@@ -4,12 +4,14 @@ import { app } from '../firebase';
 
 const db = getFirestore(app);
 
-async function getRecipes(db) {
+async function getRecipes() {
     const recipesCol = collection(db, 'recipes');
     const recipeSnapshot = await getDocs(recipesCol);
-    const recipeList = recipeSnapshot.docs.map(doc => doc.data());
+    const recipeList = recipeSnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
 
     console.log(recipeList);
+    
+    return recipeList;
 }
 
 async function addRecipe(name, imageURL, ingredients, prepTime, prepSteps) {
