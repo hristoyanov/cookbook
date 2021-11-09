@@ -8,6 +8,7 @@ import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
 import LandingPage from './components/LandingPage/LandingPage';
 import Catalog from './components/Catalog/Catalog';
+import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import AddRecipe from './components/AddRecipe/AddRecipe';
 
 import './App.css';
@@ -37,6 +38,7 @@ function App() {
             <Switch>
                 <Route path="/" exact component={LandingPage} />
                 <Route path="/recipes" exact component={Catalog} />
+                <Route path="/recipes/details/:id" exact component={RecipeDetails} />
                 <Route path="/recipes/add" component={AddRecipe} />
                 <Route path="/sign-up" component={SignUp} />
                 <Route path="/sign-in" component={SignIn} />

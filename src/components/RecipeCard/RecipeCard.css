@@ -17,7 +17,7 @@
 }
 
 .recipes-list-item-prep-time i {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .recipes-list-item-details-btn {
@@ -28,8 +28,9 @@
     background: white;
 }
 
-.recipes-list-item-details-btn a {
+.recipes-list-item-details-btn {
     text-decoration: none;
     color: black;
     font-size: 18px;
+    cursor: pointer;
 }

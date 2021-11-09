@@ -1,4 +1,4 @@
-import { getFirestore, getDocs, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, getDoc, getDocs, collection, doc, addDoc } from 'firebase/firestore';
 import { app } from '../firebase';
 
 
@@ -14,6 +14,19 @@ async function getRecipes() {
     return recipeList;
 }
 
+async function getRecipe(id) {
+    const docRef = doc(db, 'recipes', id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        console.log(docSnap.data());
+        
+        return docSnap.data();
+    }
+
+    console.log('Wrong recipe id.');
+}
+
 async function addRecipe(name, imageURL, ingredients, prepTime, prepSteps) {
     return await addDoc(collection(db, 'recipes'), {
         name,
@@ -27,5 +40,6 @@ async function addRecipe(name, imageURL, ingredients, prepTime, prepSteps) {
 export {
     db,
     getRecipes,
+    getRecipe,
     addRecipe
 };

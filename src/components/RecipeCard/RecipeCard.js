@@ -17,11 +17,11 @@ const Recipe = ({
                 <img src={imageURL} alt="recipe-img" />
             </div>
             <div className="recipes-list-item-prep-time">
-                <i class="far fa-clock"></i>{prepTime} minutes
+                <i className="far fa-clock"></i>{prepTime} minutes
             </div>
-            <button className="recipes-list-item-details-btn">
-                <Link to={`/recipes/details/${id}`}>Details</Link>
-            </button>
+                <Link to={`/recipes/details/${id}`}>
+                    <button className="recipes-list-item-details-btn">Details</button>
+                </Link>
         </li>
     );
 }
