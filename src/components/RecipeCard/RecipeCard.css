@@ -8,6 +8,7 @@
 
 .recipes-list-item-img img {
     width: 250px;
+    height: 250px;
     object-fit: cover;
     border-radius: 10px;
 }

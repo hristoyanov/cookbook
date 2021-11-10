@@ -36,7 +36,7 @@ const RecipeDetails = ({ match }) => {
                             Ingredients:
                         </h2>
                         <ul className="recipe-details-content-ingredients-list">
-                            {recipe.ingredients?.split(', ').map(x =>
+                            {recipe.ingredients.map(x =>
                                 <li className="recipe-details-content-ingredients-list-item" key={x}>{x}</li>)}
                         </ul>
                     </div>
@@ -45,7 +45,7 @@ const RecipeDetails = ({ match }) => {
                             Preparation:
                         </h2>
                         <div className="recipe-details-content-preparation-text">
-                            {recipe.prepSteps}
+                            {recipe.preparation}
                         </div>
                     </div>
                 </article>

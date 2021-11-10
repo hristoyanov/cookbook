@@ -27,13 +27,13 @@ async function getRecipe(id) {
     console.log('Wrong recipe id.');
 }
 
-async function addRecipe(name, imageURL, ingredients, prepTime, prepSteps) {
+async function addRecipe(name, imageURL, ingredients, prepTime, preparation) {
     return await addDoc(collection(db, 'recipes'), {
         name,
         imageURL,
         ingredients,
         prepTime,
-        prepSteps
+        preparation
     });
 }
 
