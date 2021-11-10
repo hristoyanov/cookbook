@@ -1,38 +1,30 @@
-import { Component } from "react";
+import { useState, useEffect } from 'react';
 
 import { getRecipes } from '../../services/services';
 import RecipeCard from '../../components/RecipeCard/RecipeCard';
 
 import './Catalog.css';
 
-class Catalog extends Component {
-    constructor(props) {
-        super(props);
+const Catalog = () => {
+    const [recipes, setRecipes] = useState([]);
 
-        this.state = {
-            recipes: []
-        }
-    }
-
-    componentDidMount() {
+    useEffect(() => {
         getRecipes()
-            .then(res => this.setState({ recipes: res }));
-    }
+            .then(res => {setRecipes(res)});
+    }, []);
 
-    render() {
-        return (
-            <section className="catalog">
-                <h1 className="catalog-heading">
-                    All Recipes
-                </h1>
-                <ul className="recipes-list">
-                    {this.state.recipes.map(x =>
-                        <RecipeCard key={x.id} {...x} />
-                    )}
-                </ul>
-            </section>
-        );
-    }
+    return (
+        <section className="catalog">
+            <h1 className="catalog-heading">
+                All Recipes
+            </h1>
+            <ul className="recipes-list">
+                {recipes.map(x =>
+                    <RecipeCard key={x.id} {...x} />
+                )}
+            </ul>
+        </section>
+    );
 }
 
 export default Catalog;

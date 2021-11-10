@@ -1,0 +1,13 @@
+.add-recipe-form {
+    width: 50%;
+}
+
+#recipe-name {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#prep-time {
+    width: 25%;
+    margin: 0 auto;
+}

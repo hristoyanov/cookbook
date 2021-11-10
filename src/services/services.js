@@ -5,26 +5,32 @@ import { app } from '../firebase';
 const db = getFirestore(app);
 
 async function getRecipes() {
-    const recipesCol = collection(db, 'recipes');
-    const recipeSnapshot = await getDocs(recipesCol);
-    const recipeList = recipeSnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
+    try {
+        const recipesCol = collection(db, 'recipes');
+        const recipeSnapshot = await getDocs(recipesCol);
+        const recipeList = recipeSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 
-    console.log(recipeList);
-    
-    return recipeList;
+        console.log(recipeList);
+
+        return recipeList;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 async function getRecipe(id) {
-    const docRef = doc(db, 'recipes', id);
-    const docSnap = await getDoc(docRef);
+    try {
+        const docRef = doc(db, 'recipes', id);
+        const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-        console.log(docSnap.data());
-        
-        return docSnap.data();
+        if (docSnap.exists()) {
+            console.log(docSnap.data());
+
+            return docSnap.data();
+        }
+    } catch (error) {
+        return console.log(error);
     }
-
-    console.log('Wrong recipe id.');
 }
 
 async function addRecipe(name, imageURL, ingredients, prepTime, preparation) {
