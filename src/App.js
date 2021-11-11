@@ -33,12 +33,14 @@ function App() {
 
     return (
         <div className="container">
-            <Header user={user}/>
+            <Header user={user} />
 
             <Switch>
                 <Route path="/" exact component={LandingPage} />
                 <Route path="/recipes" exact component={Catalog} />
-                <Route path="/recipes/details/:id" exact component={RecipeDetails} />
+                <Route path="/recipes/details/:id" exact render={({ match }) => (
+                    <RecipeDetails id={match.params.id} user={user} />
+                )} />
                 <Route path="/recipes/add" component={AddRecipe} />
                 <Route path="/sign-up" component={SignUp} />
                 <Route path="/sign-in" component={SignIn} />

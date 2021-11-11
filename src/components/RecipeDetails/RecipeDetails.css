@@ -4,6 +4,7 @@
     margin: 0 50px;
     color: white;
     padding-top: 10px;
+    position: relative;
 }
 
 .recipe-details-title {

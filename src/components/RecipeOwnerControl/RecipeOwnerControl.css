@@ -1,0 +1,25 @@
+.recipe-details-buttons-container {
+    position: absolute;
+    top: 7%;
+    left: 82%;
+}
+
+.edit-btn,
+.delete-btn {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.edit-btn {
+    margin-right: 15px;
+    padding: 10px 22px;
+    background: green;
+}
+
+.delete-btn {
+    padding: 10px 15px;
+    background: red;
+}

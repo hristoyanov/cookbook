@@ -24,12 +24,10 @@ async function getRecipe(id) {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            console.log(docSnap.data());
-
             return docSnap.data();
         }
     } catch (error) {
-        return console.log(error);
+        console.log(error);
     }
 }
 

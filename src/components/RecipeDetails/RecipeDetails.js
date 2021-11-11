@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
+import { withRouter } from "react-router-dom";
 
 import { getRecipe } from '../../services/services';
+import RecipeOwnerControl from '../RecipeOwnerControl/RecipeOwnerControl';
 
 import './RecipeDetails.css';
 
-const RecipeDetails = ({ match }) => {
+const RecipeDetails = (props) => {
     let [recipe, setRecipe] = useState({ isLoading: true });
 
     useEffect(() => {
-        getRecipe(match.params.id)
+        getRecipe(props.id)
             .then(res => setRecipe(res))
             .catch(error => console.log(error));
-    }, [match]);
+    }, [props.id]);
 
     return (
         recipe.isLoading
@@ -21,6 +23,7 @@ const RecipeDetails = ({ match }) => {
                 <h1 className="recipe-details-title">
                     {recipe.name}
                 </h1>
+                {props.user.uid === recipe.ownerId ? <RecipeOwnerControl /> : ''}
                 <div className="recipe-details-prep-time">
                     <i className="far fa-clock"></i>{recipe.prepTime} minutes
                 </div>
@@ -50,4 +53,4 @@ const RecipeDetails = ({ match }) => {
     );
 }
 
-export default RecipeDetails;
+export default withRouter(RecipeDetails);
