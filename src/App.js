@@ -26,14 +26,14 @@ function App() {
         });
     }, []);
 
-    const authInfo = {
-        isAuthenticated: Boolean(user),
-        email: user?.email
-    }
+    // const authInfo = {
+    //     isAuthenticated: Boolean(user),
+    //     email: user?.email
+    // }
 
     return (
         <div className="container">
-            <Header />
+            <Header user={user}/>
 
             <Switch>
                 <Route path="/" exact component={LandingPage} />

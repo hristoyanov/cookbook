@@ -33,13 +33,15 @@ async function getRecipe(id) {
     }
 }
 
-async function addRecipe(name, imageURL, ingredients, prepTime, preparation) {
+async function addRecipe(name, imageURL, ingredients, prepTime, preparation, hidden, ownerId) {
     return await addDoc(collection(db, 'recipes'), {
         name,
         imageURL,
         ingredients,
         prepTime,
-        preparation
+        preparation,
+        hidden,
+        ownerId
     });
 }
 

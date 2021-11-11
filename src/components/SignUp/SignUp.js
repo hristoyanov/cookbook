@@ -10,7 +10,7 @@ const SignUp = ({ history }) => {
         const password = e.target.password.value.trim();
         const passwordRepeat = e.target.passwordRepeat.value.trim();
 
-        if (password != passwordRepeat) {
+        if (password !== passwordRepeat) {
             return alert('Passwords don\'t match!');
         }
 
