@@ -41,7 +41,9 @@ function App() {
                 <Route path="/recipes/details/:id" exact render={({ match }) => (
                     <RecipeDetails id={match.params.id} user={user} />
                 )} />
-                <Route path="/recipes/add" component={AddRecipe} />
+                <Route path="/recipes/add" render={({ history }) => (
+                    <AddRecipe history={history} user={user} action="add" />
+                )} />
                 <Route path="/sign-up" component={SignUp} />
                 <Route path="/sign-in" component={SignIn} />
                 <Route path="/sign-out" render={() => {
