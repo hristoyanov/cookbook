@@ -10,7 +10,9 @@ const Catalog = () => {
 
     useEffect(() => {
         getRecipes()
-            .then(res => {setRecipes(res)});
+            .then(res => {
+                setRecipes(res)
+            });
     }, []);
 
     return (

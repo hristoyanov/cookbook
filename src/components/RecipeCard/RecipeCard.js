@@ -19,7 +19,7 @@ const Recipe = ({
             <div className="recipes-list-item-prep-time">
                 <i className="far fa-clock"></i>{prepTime} minutes
             </div>
-                <Link to={`/recipes/details/${id}`}>
+                <Link to={`/recipes/${id}/details`}>
                     <button className="recipes-list-item-details-btn">Details</button>
                 </Link>
         </li>

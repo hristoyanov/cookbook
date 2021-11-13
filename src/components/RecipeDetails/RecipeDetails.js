@@ -7,16 +7,21 @@ import RecipeOwnerControl from '../RecipeOwnerControl/RecipeOwnerControl';
 import './RecipeDetails.css';
 
 const RecipeDetails = (props) => {
-    let [recipe, setRecipe] = useState({ isLoading: true });
+    const [recipe, setRecipe] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
         getRecipe(props.id)
-            .then(res => setRecipe(res))
+            .then(res => {
+                setRecipe(res);
+                setIsLoading(false);
+            })
             .catch(error => console.log(error));
     }, [props.id]);
 
     return (
-        recipe.isLoading
+        isLoading
             ? <h1>Loading recipe...</h1>
             :
             <section className="recipe-details">
