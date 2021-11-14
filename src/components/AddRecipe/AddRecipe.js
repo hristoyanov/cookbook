@@ -34,7 +34,7 @@ const AddRecipe = ({ history }) => {
 
             e.target.reset();
 
-            history.push('/recipes/details/' + res.id);
+            history.push(`/recipes/${res.id}/details`);
         } catch (error) {
             console.log(error)
         }

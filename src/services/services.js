@@ -1,4 +1,12 @@
-import { getFirestore, getDoc, getDocs, collection, doc, addDoc } from 'firebase/firestore';
+import {
+    getFirestore,
+    getDoc,
+    getDocs,
+    collection,
+    doc,
+    addDoc,
+    deleteDoc
+} from 'firebase/firestore';
 import { app } from '../firebase';
 
 
@@ -43,9 +51,14 @@ async function addRecipe(name, imageURL, ingredients, prepTime, preparation, hid
     });
 }
 
+async function deleteRecipe(id) {
+    return await deleteDoc(doc(db, 'recipes', id));
+}
+
 export {
     db,
     getRecipes,
     getRecipe,
-    addRecipe
+    addRecipe,
+    deleteRecipe
 };
