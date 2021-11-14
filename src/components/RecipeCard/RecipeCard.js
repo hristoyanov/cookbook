@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 
 import './RecipeCard.css';
 
-const Recipe = ({
+const RecipeCard = ({
     id,
     name,
     imageURL,
-    prepTime
+    prepTime,
+    likes
 }) => {
     return (
         <li className="recipes-list-item">
@@ -19,11 +20,16 @@ const Recipe = ({
             <div className="recipes-list-item-prep-time">
                 <i className="far fa-clock"></i>{prepTime} minutes
             </div>
-                <Link to={`/recipes/${id}/details`}>
-                    <button className="recipes-list-item-details-btn">Details</button>
-                </Link>
+            <div className="recipes-list-item-likes">
+                {likes.length === 1
+                    ? '1 like'
+                    : likes.length + ' likes'}
+            </div>
+            <Link to={`/recipes/${id}/details`}>
+                <button className="recipes-list-item-details-btn">Details</button>
+            </Link>
         </li>
     );
 }
 
-export default Recipe;
+export default RecipeCard;

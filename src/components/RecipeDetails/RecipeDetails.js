@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 
 import { getRecipe } from '../../services/services';
 import RecipeOwnerControl from '../RecipeOwnerControl/RecipeOwnerControl';
+import RecipeLikes from "../RecipeLikes/RecipeLikes";
 
 import './RecipeDetails.css';
 
@@ -54,6 +55,7 @@ const RecipeDetails = (props) => {
                         </div>
                     </div>
                 </article>
+                <RecipeLikes likesArr={recipe.likes} recipeId={props.id} user={props.user} />
             </section>
     );
 }

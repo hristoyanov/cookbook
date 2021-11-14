@@ -5,7 +5,10 @@ import {
     collection,
     doc,
     addDoc,
-    deleteDoc
+    deleteDoc,
+    updateDoc,
+    arrayUnion,
+    arrayRemove
 } from 'firebase/firestore';
 import { app } from '../firebase';
 
@@ -55,10 +58,25 @@ async function deleteRecipe(id) {
     return await deleteDoc(doc(db, 'recipes', id));
 }
 
+async function updateRecipeLikes(recipeId, userId, liked) {
+    const recipeRef = doc(db, 'recipes', recipeId);
+
+    if (liked) {
+        return await updateDoc(recipeRef, {
+            likes: arrayRemove(userId)
+        });
+    } else {
+        return await updateDoc(recipeRef, {
+            likes: arrayUnion(userId)
+        });
+    }
+}
+
 export {
     db,
     getRecipes,
     getRecipe,
     addRecipe,
-    deleteRecipe
+    deleteRecipe,
+    updateRecipeLikes
 };
