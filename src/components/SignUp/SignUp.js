@@ -24,7 +24,7 @@ const SignUp = ({ history }) => {
                     displayName: displayName
                 });
 
-                history.push('/');
+                history.push('/recipes');
 
                 console.log('Signed in as ' + user.email);
             })

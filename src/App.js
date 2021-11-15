@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import { getAuth, signOut } from './firebase';
 
@@ -31,9 +31,11 @@ function App() {
     //     email: user?.email
     // }
 
+    const location = useLocation();
+
     return (
         <div className="container">
-            <Header user={user} />
+            {location.pathname === "/" ? null : <Header user={user} />}
 
             <Switch>
                 <Route path="/" exact component={LandingPage} />
@@ -47,7 +49,7 @@ function App() {
                 <Route path="/sign-out" render={() => {
                     signOut(getAuth());
 
-                    return <Redirect to="/" />
+                    return <Redirect to="/recipes" />
                 }} />
             </Switch>
         </div>

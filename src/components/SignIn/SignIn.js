@@ -13,7 +13,7 @@ const SignIn = ({ history }) => {
                 const user = userCredential.user;
                 console.log(user);
 
-                history.push('/');
+                history.push('/recipes');
             })
             .catch((error) => {
                 const errorCode = error.code;

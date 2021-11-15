@@ -10,7 +10,7 @@ const Header = (props) => {
         <header className="page-header">
             <nav className="page-header-nav">
                 <div className="page-name">
-                    <Link className="page-name-link" to="/">Cookbook</Link>
+                    <Link className="page-name-link" to="/recipes">Cookbook</Link>
                 </div>
                 <div className="page-header-nav-links">
                     {props.user

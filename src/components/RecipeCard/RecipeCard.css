@@ -24,12 +24,9 @@
 .recipes-list-item-details-btn {
     margin: 25px 0;
     border: none;
-    padding: 10px 25px;
     border-radius: 5px;
+    padding: 10px 25px;
     background: white;
-}
-
-.recipes-list-item-details-btn {
     text-decoration: none;
     color: black;
     font-size: 18px;
