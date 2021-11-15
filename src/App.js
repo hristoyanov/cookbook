@@ -38,7 +38,9 @@ function App() {
             {location.pathname === "/" ? null : <Header user={user} />}
 
             <Switch>
-                <Route path="/" exact component={LandingPage} />
+                <Route path="/" exact render={() => (
+                    <LandingPage user={user} />
+                )} />
                 <Route path="/recipes" exact component={Catalog} />
                 <Route path="/recipes/:id/details" exact render={({ match, history }) => (
                     <RecipeDetails id={match.params.id} user={user} />
