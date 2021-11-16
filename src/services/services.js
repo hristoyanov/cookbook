@@ -8,7 +8,9 @@ import {
     deleteDoc,
     updateDoc,
     arrayUnion,
-    arrayRemove
+    arrayRemove,
+    query,
+    where
 } from 'firebase/firestore';
 import { app } from '../firebase';
 
@@ -17,13 +19,12 @@ const db = getFirestore(app);
 
 async function getRecipes() {
     try {
-        const recipesCol = collection(db, 'recipes');
-        const recipeSnapshot = await getDocs(recipesCol);
-        const recipeList = recipeSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+        const recipesRef = collection(db, 'recipes');
+        const q = query(recipesRef, where('hidden', '==', false));
+        const querySnapshot = await getDocs(q);
+        const recipes = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 
-        console.log(recipeList);
-
-        return recipeList;
+        return recipes;
     } catch (error) {
         console.log(error);
     }
