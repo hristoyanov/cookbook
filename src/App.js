@@ -10,6 +10,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Catalog from './components/Catalog/Catalog';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import AddRecipe from './components/AddRecipe/AddRecipe';
+import UserRecipes from './components/UserRecipes/UserRecipes';
 
 import './App.css';
 
@@ -25,11 +26,6 @@ function App() {
             }
         });
     }, []);
-
-    // const authInfo = {
-    //     isAuthenticated: Boolean(user),
-    //     email: user?.email
-    // }
 
     const location = useLocation();
 
@@ -53,6 +49,9 @@ function App() {
 
                     return <Redirect to="/recipes" />
                 }} />
+                <Route path="/users/:id/recipes" exact render={({match}) => (
+                    <UserRecipes id={match.params.id} user={user} />
+                )} />
             </Switch>
         </div>
     );

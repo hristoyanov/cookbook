@@ -1,13 +1,15 @@
 import { Link, NavLink } from 'react-router-dom';
 
-const UserNavigation = (props) => {
+const UserNavigation = ({
+    user
+}) => {
     return (
         <ul className="page-header-nav-links-list">
             <li>
-                Signed in as <span className="user-info">{props.user.email}</span>
+                Signed in as <span className="user-info">{user.email}</span>
             </li>
             <li>
-                <NavLink to="#">My Recipes</NavLink>
+                <NavLink to={`/users/${user.uid}/recipes`}>My Recipes</NavLink>
             </li>
             <li>
                 <NavLink to="/recipes/add">Add Recipe</NavLink>

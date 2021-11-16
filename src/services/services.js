@@ -12,6 +12,7 @@ import {
     query,
     where
 } from 'firebase/firestore';
+
 import { app } from '../firebase';
 
 
@@ -25,6 +26,24 @@ async function getRecipes() {
         const recipes = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 
         return recipes;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function getUserRecipes(userId, publicOnly = false) {
+    try {
+        const recipesRef = collection(db, 'recipes');
+        let q = undefined;
+
+        if (publicOnly) {
+            q = query(recipesRef, where('ownerId', '==', userId), where('hidden', '==', false));
+        } else {
+            q = query(recipesRef, where('ownerId', '==', userId));
+        }
+        const recipes = await getDocs(q);
+        
+        return recipes.docs.map(doc => ({ ...doc.data(), id: doc.id }));
     } catch (error) {
         console.log(error);
     }
@@ -77,6 +96,7 @@ export {
     db,
     getRecipes,
     getRecipe,
+    getUserRecipes,
     addRecipe,
     deleteRecipe,
     updateRecipeLikes

@@ -8,6 +8,7 @@ const LandingPage = ({
     user
 }) => {
     return (
+        user && user.uid ?
         <section className="landing-page">
             <header className="landing-page-header">
                 <h1 className="landing-page-header-title">
@@ -32,6 +33,7 @@ const LandingPage = ({
                 {user ? null : <GuestSection />}
             </div>
         </section>
+        : null
     );
 }
 
