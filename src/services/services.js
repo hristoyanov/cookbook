@@ -35,7 +35,7 @@ async function getUserProfile(id) {
         const q = query(userProfilesRef, where('userUID', '==', id));
         const querySnapshot = await getDocs(q);
         const userProfile = querySnapshot.docs[0].data();
-        console.log(userProfile);
+
         return userProfile;
     } catch (error) {
         console.log(error);
@@ -94,7 +94,8 @@ async function addRecipe(name, imageURL, ingredients, prepTime, preparation, hid
         prepTime,
         preparation,
         hidden,
-        ownerId
+        ownerId,
+        likes: []
     });
 }
 

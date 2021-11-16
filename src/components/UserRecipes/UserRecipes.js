@@ -11,30 +11,37 @@ const UserRecipes = ({
     const [userProfile, setUserProfile] = useState({});
 
     useEffect(() => {
-        getUserRecipes(id)
-            .then(res => {
-                setRecipes(res)
-            });
-        
         getUserProfile(id)
             .then(res => {
                 setUserProfile(res);
             });
+
+        if ((currentUser && currentUser.uid) && userProfile.userUID && currentUser.uid === userProfile.userUId) {
+            getUserRecipes(id)
+                .then(res => {
+                    setRecipes(res)
+                });
+        } else {
+            getUserRecipes(id, true)
+                .then(res => {
+                    setRecipes(res)
+                });
+        }
     }, [id]);
 
     return (
         currentUser && currentUser.uid && userProfile.userUID ?
-        <section className="user-recipes">
-            <h1 className="user-recipes-title">
-                {userProfile.userUID === currentUser.uid ? 'My recipes' : `${userProfile.displayName}'s recipes`}
-            </h1>
-            <ul className="user-recipes-list">
-                {recipes.map(x =>
-                    <RecipeCard key={x.id} {...x} />
-                )}
-            </ul>
-        </section>
-        : null
+            <section className="user-recipes">
+                <h1 className="user-recipes-title">
+                    {userProfile.userUID === currentUser.uid ? 'My recipes' : `${userProfile.displayName}'s recipes`}
+                </h1>
+                <ul className="user-recipes-list">
+                    {recipes.map(x =>
+                        <RecipeCard key={x.id} {...x} />
+                    )}
+                </ul>
+            </section>
+            : null
     );
 }
 
