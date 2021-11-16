@@ -1,4 +1,5 @@
-.recipes-list {
+.recipes-list,
+.user-recipes-list {
     display: flex;
     flex-wrap: wrap;
     list-style: none;

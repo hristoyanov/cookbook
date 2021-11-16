@@ -5,7 +5,9 @@ import GuestNavigation from './GuestNavigation/GuestNavigation';
 
 import './Header.css';
 
-const Header = (props) => {
+const Header = ({
+    user
+}) => {
     return (
         <header className="page-header">
             <nav className="page-header-nav">
@@ -13,8 +15,8 @@ const Header = (props) => {
                     <Link className="page-name-link" to="/recipes">Cookbook</Link>
                 </div>
                 <div className="page-header-nav-links">
-                    {props.user
-                        ? <UserNavigation user={props.user} />
+                    {user
+                        ? <UserNavigation user={user} />
                         : <GuestNavigation />
                     }
                 </div>

@@ -18,6 +18,30 @@ import { app } from '../firebase';
 
 const db = getFirestore(app);
 
+async function createUserProfile(id, name) {
+    try {
+        return await addDoc(collection(db, 'userProfiles'), {
+            userUID: id,
+            displayName: name
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function getUserProfile(id) {
+    try {
+        const userProfilesRef = collection(db, 'userProfiles');
+        const q = query(userProfilesRef, where('userUID', '==', id));
+        const querySnapshot = await getDocs(q);
+        const userProfile = querySnapshot.docs[0].data();
+        console.log(userProfile);
+        return userProfile;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function getRecipes() {
     try {
         const recipesRef = collection(db, 'recipes');
@@ -42,7 +66,7 @@ async function getUserRecipes(userId, publicOnly = false) {
             q = query(recipesRef, where('ownerId', '==', userId));
         }
         const recipes = await getDocs(q);
-        
+
         return recipes.docs.map(doc => ({ ...doc.data(), id: doc.id }));
     } catch (error) {
         console.log(error);
@@ -94,6 +118,8 @@ async function updateRecipeLikes(recipeId, userId, liked) {
 
 export {
     db,
+    createUserProfile,
+    getUserProfile,
     getRecipes,
     getRecipe,
     getUserRecipes,

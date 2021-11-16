@@ -1,5 +1,6 @@
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from '../../firebase';
+import { getAuth, createUserWithEmailAndPassword } from '../../firebase';
 
+import { createUserProfile } from '../../services/services';
 
 const SignUp = ({ history }) => {
     const onSignUpSubmitHandler = (e) => {
@@ -20,9 +21,7 @@ const SignUp = ({ history }) => {
             .then((userCredential) => {
                 const user = userCredential.user;
 
-                updateProfile(user, {
-                    displayName: displayName
-                });
+                createUserProfile(user.uid, displayName);
 
                 history.push('/recipes');
 

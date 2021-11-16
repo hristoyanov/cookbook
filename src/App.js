@@ -50,7 +50,7 @@ function App() {
                     return <Redirect to="/recipes" />
                 }} />
                 <Route path="/users/:id/recipes" exact render={({match}) => (
-                    <UserRecipes id={match.params.id} user={user} />
+                    <UserRecipes id={match.params.id} currentUser={user} />
                 )} />
             </Switch>
         </div>
