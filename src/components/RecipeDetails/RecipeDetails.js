@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { withRouter, Link } from 'react-router-dom';
 
 import { getUserProfile, getRecipe } from '../../services/services';
 import RecipeOwnerControl from '../RecipeOwnerControl/RecipeOwnerControl';
-import RecipeLikes from "../RecipeLikes/RecipeLikes";
+import RecipeLikes from '../RecipeLikes/RecipeLikes';
 
 import './RecipeDetails.css';
 

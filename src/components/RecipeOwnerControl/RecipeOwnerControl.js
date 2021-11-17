@@ -17,7 +17,7 @@ const RecipeOwnerControl = ({
             if (confirmed) {
                 await deleteRecipe(id);
 
-                history.push('/');
+                history.push('/recipes');
             }
         }
     }

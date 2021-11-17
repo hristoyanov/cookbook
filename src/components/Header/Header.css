@@ -35,6 +35,11 @@
     color: white;
 }
 
+.page-header-nav-links-list li a.active {
+    color: black;
+    padding: 20px 0;
+    border-bottom: 5px solid black;
+}
 
 .user-info {
     font-weight: bold;

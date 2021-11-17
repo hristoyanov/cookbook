@@ -16,7 +16,7 @@ const UserRecipes = ({
                 setUserProfile(res);
             });
 
-        if ((currentUser && currentUser.uid) && userProfile.userUID && currentUser.uid === userProfile.userUId) {
+        if ((currentUser && currentUser.uid) && userProfile.userUID && currentUser.uid === userProfile.userUID) {
             getUserRecipes(id)
                 .then(res => {
                     setRecipes(res)

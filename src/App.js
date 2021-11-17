@@ -38,7 +38,7 @@ function App() {
                     <LandingPage user={user} />
                 )} />
                 <Route path="/recipes" exact component={Catalog} />
-                <Route path="/recipes/:id/details" exact render={({ match, history }) => (
+                <Route path="/recipes/:id/details" render={({ match }) => (
                     <RecipeDetails id={match.params.id} user={user} />
                 )} />
                 <Route path="/recipes/add" component={AddRecipe} />
@@ -49,7 +49,7 @@ function App() {
 
                     return <Redirect to="/recipes" />
                 }} />
-                <Route path="/users/:id/recipes" exact render={({match}) => (
+                <Route path="/users/:id/recipes" render={({match}) => (
                     <UserRecipes id={match.params.id} currentUser={user} />
                 )} />
             </Switch>
