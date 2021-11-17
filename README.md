@@ -17,7 +17,7 @@ An application for sharing cooking recipes. Users can view, create and like reci
 - Set public/private status for their recipes (Determines recipe visibility to other users).
 
 ## Creating an account
-The application uses Firebase Authentication - users sign up/sign in using an email.
+The application uses Firebase Authentication - users sign up/sign in using an email and choose a display name (username).
 
 ## Creating a recipe
 Users need to provide:
@@ -27,3 +27,5 @@ Users need to provide:
 - Preparation time
 - preparation - description of how to actually prepare the dish
 - Recipe status (public/private)
+
+All recipes are public by default.

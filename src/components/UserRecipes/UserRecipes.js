@@ -20,12 +20,14 @@ const UserRecipes = ({
             getUserRecipes(id)
                 .then(res => {
                     setRecipes(res)
-                });
+                })
+                .catch(error => console.log(error));
         } else {
             getUserRecipes(id, true)
                 .then(res => {
                     setRecipes(res)
-                });
+                })
+                .catch(error => console.log(error));
         }
     }, [id]);
 

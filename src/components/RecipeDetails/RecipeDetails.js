@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
-import { getRecipe } from '../../services/services';
+import { getUserProfile, getRecipe } from '../../services/services';
 import RecipeOwnerControl from '../RecipeOwnerControl/RecipeOwnerControl';
 import RecipeLikes from "../RecipeLikes/RecipeLikes";
 
@@ -10,7 +10,7 @@ import './RecipeDetails.css';
 const RecipeDetails = (props) => {
     const [recipe, setRecipe] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-
+    const [userProfile, setUserProfile] = useState({});
 
     useEffect(() => {
         getRecipe(props.id)
@@ -19,7 +19,15 @@ const RecipeDetails = (props) => {
                 setIsLoading(false);
             })
             .catch(error => console.log(error));
-    }, [props.id]);
+
+        if (recipe.ownerId) {
+            getUserProfile(recipe.ownerId)
+                .then(res => {
+                    setUserProfile(res);
+                })
+                .catch(error => console.log(error));
+        }
+    }, [props.id, recipe.ownerId]);
 
     return (
         isLoading
@@ -55,6 +63,9 @@ const RecipeDetails = (props) => {
                         </div>
                     </div>
                 </article>
+                <Link to={`/users/${recipe.ownerId}/recipes`} className="recipes-details-author">
+                    Author: {userProfile.displayName}
+                </Link>
                 {props.user && <RecipeLikes likesArr={recipe.likes} recipeId={props.id} user={props.user} />}
             </section>
     );
