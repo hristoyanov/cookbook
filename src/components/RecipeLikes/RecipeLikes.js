@@ -13,19 +13,19 @@ const RecipeLikes = ({
         const liked = likes.includes(user.uid);
 
         await updateRecipeLikes(recipeId, user.uid, liked);
-        const recipeRef =  await getRecipe(recipeId);
+        const recipeRef = await getRecipe(recipeId);
 
         setLikes(recipeRef.likes);
     }
 
     return (
         <div className="recipe-details-likes">
+            <button className="recipe-details-likes-btn" onClick={onLikeHandler}>
+                {likes.includes(user.uid) ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i>}
+            </button>
             <p className="recipe-details-likes-count">
                 {likes.length === 1 ? '1 like' : likes.length + ' likes'}
             </p>
-            <button className="recipe-details-likes-btn" onClick={onLikeHandler}>
-                {likes.includes(user.uid) ? 'Unlike' : 'Like'}
-            </button>
         </div>
     );
 }

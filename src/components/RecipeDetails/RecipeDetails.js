@@ -63,9 +63,12 @@ const RecipeDetails = (props) => {
                         </div>
                     </div>
                 </article>
-                <Link to={`/users/${recipe.ownerId}/recipes`} className="recipes-details-author">
-                    Author: {userProfile.displayName}
-                </Link>
+                <div className="recipe-details-author-container">
+                    Created by:
+                    <Link to={`/users/${recipe.ownerId}/recipes`} className="recipe-details-author">
+                        {userProfile.displayName}
+                    </Link>
+                </div>
                 {props.user && <RecipeLikes likesArr={recipe.likes} recipeId={props.id} user={props.user} />}
             </section>
     );
