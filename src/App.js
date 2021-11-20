@@ -46,6 +46,8 @@ function App() {
                 <Route path="/sign-in" component={SignIn} />
                 <Route path="/sign-out" render={() => {
                     signOut(getAuth());
+                    
+                    localStorage.removeItem('user');
 
                     return <Redirect to="/recipes" />
                 }} />

@@ -32,18 +32,25 @@ const UserRecipes = ({
     }, [id]);
 
     return (
-        currentUser && currentUser.uid && userProfile.userUID ?
+        userProfile.displayName
+            ?
             <section className="user-recipes">
                 <h1 className="user-recipes-title">
-                    {userProfile.userUID === currentUser.uid ? 'My recipes' : `${userProfile.displayName}'s recipes`}
+                    {currentUser && currentUser.uid && userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
                 </h1>
-                <ul className="user-recipes-list">
-                    {recipes.map(x =>
-                        <RecipeCard key={x.id} {...x} />
-                    )}
-                </ul>
+                {recipes.length > 0
+                    ?
+                    <ul className="user-recipes-list">
+                        {recipes.map(x =>
+                            <RecipeCard key={x.id} {...x} />
+                        )}
+                    </ul>
+                    :
+                    'No recipes yet.'}
             </section>
-            : null
+            : <h1 className="placeholder-title">
+                Loading data...
+            </h1>
     );
 }
 

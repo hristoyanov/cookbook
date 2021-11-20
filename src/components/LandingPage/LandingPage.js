@@ -8,7 +8,6 @@ const LandingPage = ({
     user
 }) => {
     return (
-        user && user.uid ?
         <section className="landing-page">
             <header className="landing-page-header">
                 <h1 className="landing-page-header-title">
@@ -30,10 +29,9 @@ const LandingPage = ({
                         <button className="browse-recipes-btn">Browse</button>
                     </Link>
                 </article>
-                {user ? null : <GuestSection />}
+                {!localStorage.getItem('user') ? <GuestSection /> : null}
             </div>
         </section>
-        : null
     );
 }
 
