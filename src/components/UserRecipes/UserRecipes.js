@@ -36,7 +36,7 @@ const UserRecipes = ({
             ?
             <section className="user-recipes">
                 <h1 className="user-recipes-title">
-                    {currentUser && currentUser.uid && userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
+                    {currentUser && currentUser.uid === userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
                 </h1>
                 {recipes.length > 0
                     ?
