@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import { getUserProfile, getUserRecipes } from '../../services/services';
-import UserRecipesList from '../UserRecipesList/UserRecipesList';
+import RecipeCard from '../RecipeCard/RecipeCard';
 
-const UserProfile = ({
+const UserRecipes = ({
     id,
     currentUser
 }) => {
@@ -32,6 +32,7 @@ const UserProfile = ({
     }, [id]);
 
     return (
+<<<<<<< HEAD:src/components/UserProfile/UserProfile.js
         <section className="user-recipes">
             <h1 className="user-recipes-title">
                 {currentUser && userProfile.userUID && currentUser.uid === userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
@@ -42,10 +43,28 @@ const UserProfile = ({
                 :
                 <h1 className="placeholder-title">
                     Loading data...
+=======
+        userProfile.displayName
+            ?
+            <section className="user-recipes">
+                <h1 className="user-recipes-title">
+                    {currentUser && currentUser.uid && userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
+>>>>>>> parent of 41e08b9 (Small changes.):src/components/UserRecipes/UserRecipes.js
                 </h1>
-            }
-        </section>
+                {recipes.length > 0
+                    ?
+                    <ul className="user-recipes-list">
+                        {recipes.map(x =>
+                            <RecipeCard key={x.id} {...x} />
+                        )}
+                    </ul>
+                    :
+                    'No recipes yet.'}
+            </section>
+            : <h1 className="placeholder-title">
+                Loading data...
+            </h1>
     );
 }
 
-export default UserProfile;
+export default UserRecipes;
