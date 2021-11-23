@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import { getUserProfile, getUserRecipes } from '../../services/services';
-import RecipeCard from '../RecipeCard/RecipeCard';
+import UserRecipesList from '../UserRecipesList/UserRecipesList';
 
-const UserRecipes = ({
+const UserProfile = ({
     id,
     currentUser
 }) => {
@@ -32,26 +32,20 @@ const UserRecipes = ({
     }, [id]);
 
     return (
-        userProfile.displayName
-            ?
-            <section className="user-recipes">
-                <h1 className="user-recipes-title">
-                    {currentUser && currentUser.uid && userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
-                </h1>
-                {recipes.length > 0
-                    ?
-                    <ul className="user-recipes-list">
-                        {recipes.map(x =>
-                            <RecipeCard key={x.id} {...x} />
-                        )}
-                    </ul>
-                    :
-                    'No recipes yet.'}
-            </section>
-            : <h1 className="placeholder-title">
-                Loading data...
+        <section className="user-recipes">
+            <h1 className="user-recipes-title">
+                {currentUser && currentUser.uid && userProfile.userUID ? 'My recipes' : userProfile.displayName ? `${userProfile.displayName}'s recipes` : null}
             </h1>
+            {userProfile.displayName
+                ?
+                <UserRecipesList recipes={recipes} />
+                :
+                <h1 className="placeholder-title">
+                    Loading data...
+                </h1>
+            }
+        </section>
     );
 }
 
-export default UserRecipes;
+export default UserProfile;

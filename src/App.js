@@ -10,7 +10,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Catalog from './components/Catalog/Catalog';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import AddRecipe from './components/AddRecipe/AddRecipe';
-import UserRecipes from './components/UserRecipes/UserRecipes';
+import UserProfile from './components/UserProfile/UserProfile';
 
 import './App.css';
 
@@ -52,7 +52,7 @@ function App() {
                     return <Redirect to="/recipes" />
                 }} />
                 <Route path="/users/:id/recipes" render={({match}) => (
-                    <UserRecipes id={match.params.id} currentUser={user} />
+                    <UserProfile id={match.params.id} currentUser={user} />
                 )} />
             </Switch>
         </div>
