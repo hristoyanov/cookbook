@@ -4,6 +4,8 @@ const UserNavigation = ({
     user
 }) => {
     return (
+        user && user.email
+        ?
         <ul className="page-header-nav-links-list">
             <li>
                 Signed in as <span className="user-info">{user.email}</span>
@@ -18,6 +20,8 @@ const UserNavigation = ({
                 <Link to="/sign-out">Sign Out</Link>
             </li>
         </ul>
+        :
+        null
     );
 }
 

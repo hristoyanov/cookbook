@@ -16,7 +16,7 @@ const UserRecipes = ({
                 setUserProfile(res);
             });
 
-        if ((currentUser && currentUser.uid) && userProfile.userUID && currentUser.uid === userProfile.userUID) {
+        if (currentUser && currentUser.uid === id) {
             getUserRecipes(id)
                 .then(res => {
                     setRecipes(res)
@@ -29,7 +29,7 @@ const UserRecipes = ({
                 })
                 .catch(error => console.log(error));
         }
-    }, [id]);
+    }, [id, userProfile.userUID]);
 
     return (
         userProfile.displayName

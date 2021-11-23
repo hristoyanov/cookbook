@@ -21,7 +21,7 @@ const RecipeLikes = ({
     return (
         <div className="recipe-details-likes">
             <button className="recipe-details-likes-btn" onClick={onLikeHandler}>
-                {likes.includes(user.uid) ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i>}
+                {likes.includes(user.uid) ? <i className="fas fa-heart"></i> : <i className="far fa-heart"></i>}
             </button>
             <p className="recipe-details-likes-count">
                 {likes.length === 1 ? '1 like' : likes.length + ' likes'}
