@@ -16,10 +16,10 @@ const UserRecipes = ({
                 setUserProfile(res);
             });
 
-        if (currentUser && currentUser.uid === userProfile.userUID) {
+        if ((currentUser && currentUser.uid) && userProfile.userUID && currentUser.uid === userProfile.userUID) {
             getUserRecipes(id)
                 .then(res => {
-                    setRecipes(res)               
+                    setRecipes(res)
                 })
                 .catch(error => console.log(error));
         } else {
@@ -32,24 +32,11 @@ const UserRecipes = ({
     }, [id]);
 
     return (
-<<<<<<< HEAD:src/components/UserProfile/UserProfile.js
-        <section className="user-recipes">
-            <h1 className="user-recipes-title">
-                {currentUser && userProfile.userUID && currentUser.uid === userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
-            </h1>
-            {userProfile.displayName
-                ?
-                <UserRecipesList recipes={recipes} />
-                :
-                <h1 className="placeholder-title">
-                    Loading data...
-=======
         userProfile.displayName
             ?
             <section className="user-recipes">
                 <h1 className="user-recipes-title">
                     {currentUser && currentUser.uid && userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
->>>>>>> parent of 41e08b9 (Small changes.):src/components/UserRecipes/UserRecipes.js
                 </h1>
                 {recipes.length > 0
                     ?
