@@ -11,7 +11,10 @@ const UserNavigation = ({
                 Signed in as <span className="user-info">{user.email}</span>
             </li>
             <li>
-                <NavLink to={`/users/${user.uid}/recipes`} activeClassName="active">My Recipes</NavLink>
+                <NavLink to={`/users/${user.uid}/recipes`} exact activeClassName="active">My Recipes</NavLink>
+            </li>
+            <li>
+                <NavLink to={`/users/${user.uid}/recipes/liked`} exact activeClassName="active">Liked Recipes</NavLink>
             </li>
             <li>
                 <NavLink to="/recipes/add" activeClassName="active">Add Recipe</NavLink>

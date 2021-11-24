@@ -73,6 +73,19 @@ async function getUserRecipes(userId, publicOnly = false) {
     }
 }
 
+async function getUserLikedRecipes(userId) {
+    try {
+        const recipesRef = collection(db, 'recipes');
+        const q = query(recipesRef, where('likes', 'array-contains', userId))
+        const querySnapshot = await getDocs(q);
+        const recipes = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+
+        return recipes;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function getRecipe(id) {
     try {
         const docRef = doc(db, 'recipes', id);
@@ -124,6 +137,7 @@ export {
     getRecipes,
     getRecipe,
     getUserRecipes,
+    getUserLikedRecipes,
     addRecipe,
     deleteRecipe,
     updateRecipeLikes

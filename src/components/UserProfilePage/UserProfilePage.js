@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { getUserProfile, getUserRecipes } from '../../services/services';
 import RecipeCard from '../RecipeCard/RecipeCard';
 
-const UserRecipes = ({
+const UserProfilePage = ({
     id,
     currentUser
 }) => {
@@ -48,10 +48,11 @@ const UserRecipes = ({
                     :
                     'No recipes yet.'}
             </section>
-            : <h1 className="placeholder-title">
+            :
+            <h1 className="placeholder-title">
                 Loading data...
             </h1>
     );
 }
 
-export default UserRecipes;
+export default UserProfilePage;

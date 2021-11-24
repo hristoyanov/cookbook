@@ -10,7 +10,8 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Catalog from './components/Catalog/Catalog';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
 import AddRecipe from './components/AddRecipe/AddRecipe';
-import UserRecipes from './components/UserRecipes/UserRecipes';
+import UserProfilePage from './components/UserProfilePage/UserProfilePage';
+import LikedRecipesPage from './components/LikedRecipesPage/LikedRecipesPage';
 
 import './App.css';
 
@@ -46,13 +47,16 @@ function App() {
                 <Route path="/sign-in" component={SignIn} />
                 <Route path="/sign-out" render={() => {
                     signOut(getAuth());
-                    
+
                     localStorage.removeItem('user');
 
                     return <Redirect to="/recipes" />
                 }} />
-                <Route path="/users/:id/recipes" render={({match}) => (
-                    <UserRecipes id={match.params.id} currentUser={user} />
+                <Route path="/users/:id/recipes" exact render={({ match }) => (
+                    <UserProfilePage id={match.params.id} currentUser={user} />
+                )} />
+                <Route path="/users/:id/recipes/liked" exact render={({ match }) => (
+                    <LikedRecipesPage id={match.params.id} user={user} />
                 )} />
             </Switch>
         </div>
