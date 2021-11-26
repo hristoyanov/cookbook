@@ -78,28 +78,36 @@ const RecipeForm = ({
         }
     }
 
+    if (mode === 'Edit' && user && user.uid !== recipe.ownerId) {
+        return !loaded ? null : <h1>You can only edit your own recipes.</h1>;
+    }
+
     return (
-        <section className={mode[0].toLowerCase() + mode.slice(1) + '-recipe'}>
-            <form className="recipe-form" onSubmit={onSubmitHandler}>
-                <legend>{mode + ' recipe'}</legend>
-                <label htmlFor="recipe-name">Recipe Name</label>
-                <input type="text" name="name" id="recipe-name" defaultValue={loaded ? recipe.name : ''} required />
-                <label htmlFor="image-url">Image</label>
-                <input type="text" name="imageURL" id="image-url" placeholder="Please provide image source." defaultValue={loaded ? recipe.imageURL : ''} required />
-                <label htmlFor="ingredients">Ingredients</label>
-                <textarea name="ingredients" id="ingredients" cols="30" rows="7" placeholder="Please add ingredients separated by comma." defaultValue={loaded ? recipe.ingredients.join(', ') : ''} required></textarea>
-                <label htmlFor="prep-time">Preparation time (in minutes)</label>
-                <input type="number" name="prepTime" id="prep-time" min="0" defaultValue={loaded ? recipe.prepTime : ''} required />
-                <label htmlFor="preparation">Preparation</label>
-                <textarea name="preparation" id="preparation" cols="30" rows="7" defaultValue={loaded ? recipe.preparation : ''} required></textarea>
-                <label htmlFor="visibility">This recipe should be:</label>
-                <select type="text" name="visibility" id="visibility">
-                    <option value="public">Public</option>
-                    <option value="private">Private</option>
-                </select>
-                <button className="submit-btn">Submit</button>
-            </form>
-        </section>
+        mode === 'Edit' && !loaded
+            ?
+            null
+            :
+            <section className={mode[0].toLowerCase() + mode.slice(1) + '-recipe'}>
+                <form className="recipe-form" onSubmit={onSubmitHandler}>
+                    <legend>{mode + ' recipe'}</legend>
+                    <label htmlFor="recipe-name">Recipe Name</label>
+                    <input type="text" name="name" id="recipe-name" defaultValue={loaded ? recipe.name : ''} required />
+                    <label htmlFor="image-url">Image</label>
+                    <input type="text" name="imageURL" id="image-url" placeholder="Please provide image source." defaultValue={loaded ? recipe.imageURL : ''} required />
+                    <label htmlFor="ingredients">Ingredients</label>
+                    <textarea name="ingredients" id="ingredients" cols="30" rows="7" placeholder="Please add ingredients separated by comma." defaultValue={loaded ? recipe.ingredients.join(', ') : ''} required></textarea>
+                    <label htmlFor="prep-time">Preparation time (in minutes)</label>
+                    <input type="number" name="prepTime" id="prep-time" min="0" defaultValue={loaded ? recipe.prepTime : ''} required />
+                    <label htmlFor="preparation">Preparation</label>
+                    <textarea name="preparation" id="preparation" cols="30" rows="7" defaultValue={loaded ? recipe.preparation : ''} required></textarea>
+                    <label htmlFor="visibility">This recipe should be:</label>
+                    <select type="text" name="visibility" id="visibility">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                    <button className="submit-btn">Submit</button>
+                </form>
+            </section>
     );
 }
 
