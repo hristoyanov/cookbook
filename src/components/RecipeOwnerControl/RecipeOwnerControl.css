@@ -4,7 +4,7 @@
     left: 82%;
 }
 
-.edit-btn,
+.edit-link,
 .delete-btn {
     border: none;
     border-radius: 5px;
@@ -14,10 +14,11 @@
     cursor: pointer;
 }
 
-.edit-btn {
-    margin-right: 15px;
-    padding: 10px 22px;
+.edit-link {
+    margin-right: 20px;
+    padding: 8px 22px;
     background: green;
+    text-decoration: none;
 }
 
 .delete-btn {

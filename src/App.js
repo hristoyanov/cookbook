@@ -9,9 +9,9 @@ import SignIn from './components/SignIn/SignIn';
 import LandingPage from './components/LandingPage/LandingPage';
 import Catalog from './components/Catalog/Catalog';
 import RecipeDetails from './components/RecipeDetails/RecipeDetails';
-import AddRecipe from './components/AddRecipe/AddRecipe';
 import UserProfilePage from './components/UserProfilePage/UserProfilePage';
 import LikedRecipesPage from './components/LikedRecipesPage/LikedRecipesPage';
+import RecipeForm from './components/RecipeForm/RecipeForm';
 
 import './App.css';
 
@@ -42,7 +42,12 @@ function App() {
                 <Route path="/recipes/:id/details" render={({ match }) => (
                     <RecipeDetails id={match.params.id} user={user} />
                 )} />
-                <Route path="/recipes/add" component={AddRecipe} />
+                <Route path="/recipes/add" render={({ history }) => (
+                    <RecipeForm user={user} mode={'Add'} history={history} />
+                )} />
+                <Route path="/recipes/:id/edit" render={({ match, history }) => (
+                    <RecipeForm user={user} mode={'Edit'} id={match.params.id} history={history} />
+                )} />
                 <Route path="/sign-up" component={SignUp} />
                 <Route path="/sign-in" component={SignIn} />
                 <Route path="/sign-out" render={() => {

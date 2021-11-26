@@ -112,6 +112,12 @@ async function addRecipe(name, imageURL, ingredients, prepTime, preparation, hid
     });
 }
 
+async function editRecipe(recipe, id) {
+    const recipeRef = doc(db, 'recipes', id);
+
+    return await updateDoc(recipeRef, recipe);
+}
+
 async function deleteRecipe(id) {
     return await deleteDoc(doc(db, 'recipes', id));
 }
@@ -139,6 +145,7 @@ export {
     getUserRecipes,
     getUserLikedRecipes,
     addRecipe,
+    editRecipe,
     deleteRecipe,
     updateRecipeLikes
 };

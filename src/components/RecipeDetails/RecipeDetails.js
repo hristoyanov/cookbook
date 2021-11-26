@@ -37,7 +37,7 @@ const RecipeDetails = (props) => {
                 <h1 className="recipe-details-title">
                     {recipe.name}
                 </h1>
-                {props.user && props.user.uid === recipe.ownerId ? <RecipeOwnerControl id={props.id} ownerId={recipe.ownerId} user={props.user} history={props.history} /> : ''}
+                {props.user && props.user.uid === recipe.ownerId ? <RecipeOwnerControl id={props.id} ownerId={recipe.ownerId} user={props.user} history={props.history} recipe={recipe}/> : ''}
                 <div className="recipe-details-prep-time">
                     <i className="far fa-clock"></i>{recipe.prepTime} minutes
                 </div>

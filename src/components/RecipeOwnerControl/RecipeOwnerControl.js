@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { deleteRecipe } from '../../services/services';
 
 import './RecipeOwnerControl.css';
@@ -17,14 +18,14 @@ const RecipeOwnerControl = ({
             if (confirmed) {
                 await deleteRecipe(id);
 
-                history.push('/recipes');
+                history.push(`/users/${user.uid}/recipes`);
             }
         }
     }
 
     return (
         <div className="recipe-details-buttons-container">
-            <button className="edit-btn">Edit</button>
+            <Link to={`/recipes/${id}/edit`} className='edit-link'>Edit</Link>
             <button className="delete-btn" onClick={onDeleteClickHandler}>Delete</button>
         </div>
     );
