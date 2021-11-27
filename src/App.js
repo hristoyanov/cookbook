@@ -3,6 +3,8 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import { getAuth, signOut } from './firebase';
 
+import AuthContext from './contexts/authContext';
+
 import Header from './components/Header/Header';
 import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
@@ -31,40 +33,38 @@ function App() {
     const location = useLocation();
 
     return (
-        <div className="container">
-            {location.pathname === "/" ? null : <Header user={user} />}
+        <AuthContext.Provider value={user}>
+            <div className="container">
+                {location.pathname === "/" ? null : <Header user={user} />}
 
-            <Switch>
-                <Route path="/" exact render={() => (
-                    <LandingPage user={user} />
-                )} />
-                <Route path="/recipes" exact component={Catalog} />
-                <Route path="/recipes/:id/details" render={({ match }) => (
-                    <RecipeDetails id={match.params.id} user={user} />
-                )} />
-                <Route path="/recipes/add" render={({ history }) => (
-                    <RecipeForm user={user} mode={'Add'} history={history} />
-                )} />
-                <Route path="/recipes/:id/edit" render={({ match, history }) => (
-                    <RecipeForm user={user} mode={'Edit'} id={match.params.id} history={history} />
-                )} />
-                <Route path="/sign-up" component={SignUp} />
-                <Route path="/sign-in" component={SignIn} />
-                <Route path="/sign-out" render={() => {
-                    signOut(getAuth());
+                <Switch>
+                    <Route path="/" exact component={LandingPage} />
+                    <Route path="/recipes" exact component={Catalog} />
+                    <Route path="/recipes/:id/details" render={({ match }) => (
+                        <RecipeDetails id={match.params.id} user={user} />
+                    )} />
+                    <Route path="/recipes/add" render={({ history }) => (
+                        <RecipeForm user={user} mode={'Add'} history={history} />
+                    )} />
+                    <Route path="/recipes/:id/edit" render={({ match, history }) => (
+                        <RecipeForm user={user} mode={'Edit'} id={match.params.id} history={history} />
+                    )} />
+                    <Route path="/sign-up" component={SignUp} />
+                    <Route path="/sign-in" component={SignIn} />
+                    <Route path="/sign-out" render={() => {
+                        signOut(getAuth());
 
-                    localStorage.removeItem('user');
-
-                    return <Redirect to="/recipes" />
-                }} />
-                <Route path="/users/:id/recipes" exact render={({ match }) => (
-                    <UserProfilePage id={match.params.id} currentUser={user} />
-                )} />
-                <Route path="/users/:id/recipes/liked" exact render={({ match }) => (
-                    <LikedRecipesPage id={match.params.id} user={user} />
-                )} />
-            </Switch>
-        </div>
+                        return <Redirect to="/recipes" />
+                    }} />
+                    <Route path="/users/:id/recipes" exact render={({ match }) => (
+                        <UserProfilePage id={match.params.id} currentUser={user} />
+                    )} />
+                    <Route path="/users/:id/recipes/liked" exact render={({ match }) => (
+                        <LikedRecipesPage id={match.params.id} user={user} />
+                    )} />
+                </Switch>
+            </div>
+        </AuthContext.Provider>
     );
 }
 

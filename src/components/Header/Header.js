@@ -15,7 +15,7 @@ const Header = ({
                     <Link className="page-name-link" to="/recipes">Cookbook</Link>
                 </div>
                 <div className="page-header-nav-links">
-                    {localStorage.getItem('user')
+                    {user && user.email
                         ? <UserNavigation user={user} />
                         : <GuestNavigation />
                     }

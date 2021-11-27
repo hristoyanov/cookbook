@@ -21,12 +21,9 @@ const SignUp = ({ history }) => {
             .then((userCredential) => {
                 const user = userCredential.user;
 
-                localStorage.setItem('user', user);
-                console.log('Signed in as ' + user.email);
                 createUserProfile(user.uid, displayName);
 
                 history.push('/recipes');
-
             })
             .catch((error) => {
                 const errorCode = error.code;

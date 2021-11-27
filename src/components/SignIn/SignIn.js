@@ -12,7 +12,6 @@ const SignIn = ({ history }) => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 
-                localStorage.setItem('user', user);
                 console.log('Signed in as ' + user.email);
 
                 history.push('/recipes');
