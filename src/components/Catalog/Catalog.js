@@ -17,13 +17,18 @@ const Catalog = () => {
     }, []);
 
     const sortRecipes = () => {
-        setRecipes([...recipes].sort((a, b) => b.likes.length - a.likes.length));
-        setMode('most liked');
+        if (mode === 'latest') {
+            setRecipes([...recipes].sort((a, b) => b.likes.length - a.likes.length));
+            setMode('most liked');
+        } else {
+            setRecipes([...recipes].sort((a, b) => b.createdAt - a.createdAt));
+            setMode('latest');
+        }
     }
 
     return (
         <section className="catalog">
-            <button className="most-liked-recipes" onClick={sortRecipes}>Most liked recipes</button>
+            <button className="most-liked-recipes" onClick={sortRecipes}>{mode === 'latest' ? 'Most liked' : 'Latest recipes'}</button>
             <h1 className="catalog-heading">
                 {mode === 'latest' ? 'Latest recipes' : 'Most liked recipes'}
             </h1>
