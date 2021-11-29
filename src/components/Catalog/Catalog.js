@@ -1,24 +1,31 @@
 import { useState, useEffect } from 'react';
 
-import { getRecipes } from '../../services/services';
+import { getLatestRecipes } from '../../services/services';
 import RecipeCard from '../../components/RecipeCard/RecipeCard';
 
 import './Catalog.css';
 
 const Catalog = () => {
     const [recipes, setRecipes] = useState([]);
+    const [mode, setMode] = useState('latest');
 
     useEffect(() => {
-        getRecipes()
+        getLatestRecipes()
             .then(res => {
                 setRecipes(res)
             });
     }, []);
 
+    const sortRecipes = () => {
+        setRecipes([...recipes].sort((a, b) => b.likes.length - a.likes.length));
+        setMode('most liked');
+    }
+
     return (
         <section className="catalog">
+            <button className="most-liked-recipes" onClick={sortRecipes}>Most liked recipes</button>
             <h1 className="catalog-heading">
-                All Recipes
+                {mode === 'latest' ? 'Latest recipes' : 'Most liked recipes'}
             </h1>
             <ul className="recipes-list">
                 {recipes.map(x =>

@@ -10,7 +10,9 @@ import {
     arrayUnion,
     arrayRemove,
     query,
-    where
+    where,
+    orderBy,
+    Timestamp
 } from 'firebase/firestore';
 
 import { app } from '../firebase';
@@ -42,10 +44,10 @@ async function getUserProfile(id) {
     }
 }
 
-async function getRecipes() {
+async function getLatestRecipes() {
     try {
         const recipesRef = collection(db, 'recipes');
-        const q = query(recipesRef, where('hidden', '==', false));
+        const q = query(recipesRef, where('hidden', '==', false), orderBy('createdAt', 'desc'));
         const querySnapshot = await getDocs(q);
         const recipes = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 
@@ -108,7 +110,8 @@ async function addRecipe(name, imageURL, ingredients, prepTime, preparation, hid
         preparation,
         hidden,
         ownerId,
-        likes: []
+        likes: [],
+        createdAt: Timestamp.now()
     });
 }
 
@@ -140,7 +143,7 @@ export {
     db,
     createUserProfile,
     getUserProfile,
-    getRecipes,
+    getLatestRecipes,
     getRecipe,
     getUserRecipes,
     getUserLikedRecipes,

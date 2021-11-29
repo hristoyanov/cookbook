@@ -1,3 +1,7 @@
+.catalog {
+    position: relative;
+}
+
 .recipes-list,
 .user-recipes-list {
     display: flex;
@@ -6,4 +10,17 @@
     margin: 0;
     padding: 0;
     justify-content: center;
+}
+
+.most-liked-recipes {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    background: orange;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: -35px;
+    right: 15px;
 }
