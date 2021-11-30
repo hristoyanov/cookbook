@@ -12,7 +12,20 @@
     justify-content: center;
 }
 
-.most-liked-recipes {
+.sort-section {
+    position: absolute;
+    top: -35px;
+    right: 15px;
+    border: 3px solid orange;
+    border-radius: 5px;
+    padding: 5px 15px;
+}
+
+.sort-section-text {
+    margin: 5px 0;
+}
+
+.sort-btn {
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -20,7 +33,4 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
-    position: absolute;
-    top: -35px;
-    right: 15px;
 }

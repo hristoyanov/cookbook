@@ -28,7 +28,12 @@ const Catalog = () => {
 
     return (
         <section className="catalog">
-            <button className="most-liked-recipes" onClick={sortRecipes}>{mode === 'latest' ? 'Most liked' : 'Latest recipes'}</button>
+            <div className="sort-section">
+                <p className="sort-section-text">
+                    Sort by:
+                </p>
+                <button className="sort-btn" onClick={sortRecipes}>{mode === 'latest' ? 'Most liked' : 'Latest'}</button>
+            </div>
             <h1 className="catalog-heading">
                 {mode === 'latest' ? 'Latest recipes' : 'Most liked recipes'}
             </h1>
