@@ -8,8 +8,8 @@ import './RecipeForm.css';
 
 const RecipeForm = ({
     history,
-    mode,
-    id
+    match,
+    mode
 }) => {
     const user = useContext(AuthContext);
 
@@ -18,14 +18,14 @@ const RecipeForm = ({
 
     useEffect(() => {
         if (mode === 'Edit') {
-            getRecipe(id)
+            getRecipe(match.params.id)
                 .then(res => {
                     setRecipe(res);
                     setIsLoaded(true);
                 })
                 .catch(error => console.log(error));
         }
-    }, [id]);
+    }, [match]);
 
     async function onSubmitHandler(e) {
         e.preventDefault();
@@ -68,13 +68,13 @@ const RecipeForm = ({
                     prepTime: prepTime,
                     preparation: preparation,
                     hidden: hidden
-                }, id);
+                }, match.params.id);
 
                 alert('Recipe edited successfully!');
 
                 e.target.reset();
 
-                history.push(`/recipes/${id}/details`);
+                history.push(`/recipes/${match.params.id}/details`);
             } catch (error) {
                 console.log(error);
             }

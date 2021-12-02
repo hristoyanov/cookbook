@@ -4,6 +4,7 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import { auth, signOut } from './firebase';
 
 import AuthContext from './contexts/AuthContext';
+import isAuth from './hoc/isAuth';
 
 import Header from './components/Header/Header';
 import SignUp from './components/SignUp/SignUp';
@@ -42,12 +43,8 @@ function App() {
                     <Route path="/" exact component={LandingPage} />
                     <Route path="/recipes" exact component={Catalog} />
                     <Route path="/recipes/:id/details" exact component={RecipeDetails} />
-                    <Route path="/recipes/add" render={({ history }) => (
-                        <RecipeForm mode={'Add'} history={history} />
-                    )} />
-                    <Route path="/recipes/:id/edit" render={({ match, history }) => (
-                        <RecipeForm mode={'Edit'} id={match.params.id} history={history} />
-                    )} />
+                    <Route path="/recipes/add" render={props => user ? <RecipeForm {...props} mode={'Add'} /> : <Redirect to="/sign-in" />} />
+                    <Route path="/recipes/:id/edit" render={props => user ? <RecipeForm {...props} mode={'Edit'} /> : <Redirect to="/sign-in" />} />
                     <Route path="/sign-up" component={SignUp} />
                     <Route path="/sign-in" component={SignIn} />
                     <Route path="/sign-out" render={() => {
@@ -55,8 +52,8 @@ function App() {
 
                         return <Redirect to="/recipes" />
                     }} />
-                    <Route path="/users/:id/recipes" exact component={UserProfilePage} />
-                    <Route path="/users/:id/recipes/liked" exact component={LikedRecipesPage} />
+                    <Route path="/users/:id/recipes" exact component={isAuth(UserProfilePage)} />
+                    <Route path="/users/:id/recipes/liked" exact component={isAuth(LikedRecipesPage)} />
                 </Switch>
             </div>
         </AuthContext.Provider>
