@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-import AuthContext from '../../contexts/authContext';
+import AuthContext from '../../contexts/AuthContext';
 import GuestSection from './GuestSection/GuestSection';
 
 import './LandingPage.css';

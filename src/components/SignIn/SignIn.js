@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword } from '../../firebase';
+import { auth, signInWithEmailAndPassword } from '../../firebase';
 
 const SignIn = ({ history }) => {
     const onSignInSubmitHandler = (e) => {
@@ -6,7 +6,6 @@ const SignIn = ({ history }) => {
 
         const email = e.target.email.value.trim();
         const password = e.target.password.value.trim();
-        const auth = getAuth();
 
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {

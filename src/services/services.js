@@ -1,5 +1,4 @@
 import {
-    getFirestore,
     getDoc,
     getDocs,
     collection,
@@ -14,15 +13,14 @@ import {
     orderBy,
     Timestamp
 } from 'firebase/firestore';
+import { db } from '../firebase';
 
-import { app } from '../firebase';
-
-
-const db = getFirestore(app);
+const userProfilesRef = collection(db, 'userProfiles');
+const recipesRef = collection(db, 'recipes');
 
 async function createUserProfile(id, name) {
     try {
-        return await addDoc(collection(db, 'userProfiles'), {
+        return await addDoc(userProfilesRef, {
             userUID: id,
             displayName: name
         });
@@ -33,7 +31,6 @@ async function createUserProfile(id, name) {
 
 async function getUserProfile(id) {
     try {
-        const userProfilesRef = collection(db, 'userProfiles');
         const q = query(userProfilesRef, where('userUID', '==', id));
         const querySnapshot = await getDocs(q);
         const userProfile = querySnapshot.docs[0].data();
@@ -46,7 +43,6 @@ async function getUserProfile(id) {
 
 async function getLatestRecipes() {
     try {
-        const recipesRef = collection(db, 'recipes');
         const q = query(recipesRef, where('hidden', '==', false), orderBy('createdAt', 'desc'));
         const querySnapshot = await getDocs(q);
         const recipes = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
@@ -59,7 +55,6 @@ async function getLatestRecipes() {
 
 async function getUserRecipes(userId, publicOnly = false) {
     try {
-        const recipesRef = collection(db, 'recipes');
         let q = undefined;
 
         if (publicOnly) {
@@ -77,7 +72,6 @@ async function getUserRecipes(userId, publicOnly = false) {
 
 async function getUserLikedRecipes(userId) {
     try {
-        const recipesRef = collection(db, 'recipes');
         const q = query(recipesRef, where('likes', 'array-contains', userId))
         const querySnapshot = await getDocs(q);
         const recipes = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
@@ -102,7 +96,7 @@ async function getRecipe(id) {
 }
 
 async function addRecipe(name, imageURL, ingredients, prepTime, preparation, hidden, ownerId) {
-    return await addDoc(collection(db, 'recipes'), {
+    return await addDoc(recipesRef, {
         name,
         imageURL,
         ingredients,

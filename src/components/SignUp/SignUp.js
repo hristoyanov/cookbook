@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword } from '../../firebase';
+import { auth, createUserWithEmailAndPassword } from '../../firebase';
 
 import { createUserProfile } from '../../services/services';
 
@@ -14,8 +14,6 @@ const SignUp = ({ history }) => {
         if (password !== passwordRepeat) {
             return alert('Passwords don\'t match!');
         }
-
-        const auth = getAuth();
 
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {

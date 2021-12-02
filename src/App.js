@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
-import { getAuth, signOut } from './firebase';
+import { auth, signOut } from './firebase';
 
-import AuthContext from './contexts/authContext';
+import AuthContext from './contexts/AuthContext';
 
 import Header from './components/Header/Header';
 import SignUp from './components/SignUp/SignUp';
@@ -21,7 +21,7 @@ function App() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        getAuth().onAuthStateChanged((authUser) => {
+        auth.onAuthStateChanged((authUser) => {
             if (authUser) {
                 setUser(authUser);
             } else {
@@ -52,7 +52,7 @@ function App() {
                     <Route path="/sign-up" component={SignUp} />
                     <Route path="/sign-in" component={SignIn} />
                     <Route path="/sign-out" render={() => {
-                        signOut(getAuth());
+                        signOut(auth);
 
                         return <Redirect to="/recipes" />
                     }} />
