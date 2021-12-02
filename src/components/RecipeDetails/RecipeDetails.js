@@ -76,7 +76,7 @@ const RecipeDetails = ({
                         {userProfile.displayName}
                     </Link>
                 </div>
-                {user && <RecipeLikes likesArr={recipe.likes} recipeId={match.params.id} />}
+                {user?.uid === recipe?.ownerId ? null : <RecipeLikes likesArr={recipe.likes} recipeId={match.params.id} />}
             </section>
     );
 }

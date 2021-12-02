@@ -73,7 +73,7 @@ async function getUserRecipes(userId, publicOnly = false) {
 
 async function getUserLikedRecipes(userId) {
     try {
-        const q = query(recipesRef, where('likes', 'array-contains', userId))
+        const q = query(recipesRef, where('likes', 'array-contains', userId), where('hidden', '==', false));
         const querySnapshot = await getDocs(q);
         const recipes = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 
