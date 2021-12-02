@@ -1,15 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
+import AuthContext from '../../contexts/AuthContext';
 import { getRecipe, addRecipe, editRecipe } from '../../services/services';
 
 import './RecipeForm.css';
 
+
 const RecipeForm = ({
     history,
-    user,
     mode,
     id
 }) => {
+    const user = useContext(AuthContext);
+
     const [recipe, setRecipe] = useState({});
     const [loaded, setIsLoaded] = useState(false);
 

@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from 'react';
 
+import AuthContext from '../../contexts/AuthContext';
 import { getRecipe, updateRecipeLikes } from '../../services/services';
+
 
 const RecipeLikes = ({
     recipeId,
-    likesArr,
-    user
+    likesArr
 }) => {
+    const user = useContext(AuthContext);
+
     const [likes, setLikes] = useState(likesArr);
 
     async function onLikeHandler() {

@@ -15,6 +15,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase';
 
+
 const userProfilesRef = collection(db, 'userProfiles');
 const recipesRef = collection(db, 'recipes');
 

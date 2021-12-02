@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
+// import AuthContext from '../../contexts/AuthContext';
 import { getUserLikedRecipes } from '../../services/services';
 import RecipeCard from '../RecipeCard/RecipeCard';
 
-const LikedRecipesPage = ({
-    id
-}) => {
+
+const LikedRecipesPage = ({ match }) => {
+    // const user = useContext(AuthContext);
+
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
-        getUserLikedRecipes(id)
+        getUserLikedRecipes(match.params.id)
             .then(res => {
                 setRecipes(res)
             })

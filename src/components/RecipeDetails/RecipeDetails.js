@@ -1,19 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
+import AuthContext from '../../contexts/AuthContext';
 import { getUserProfile, getRecipe } from '../../services/services';
 import RecipeOwnerControl from '../RecipeOwnerControl/RecipeOwnerControl';
 import RecipeLikes from '../RecipeLikes/RecipeLikes';
 
 import './RecipeDetails.css';
 
-const RecipeDetails = (props) => {
+
+const RecipeDetails = ({
+    match,
+    history
+}) => {
+    const user = useContext(AuthContext);
+
     const [recipe, setRecipe] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [userProfile, setUserProfile] = useState({});
 
     useEffect(() => {
-        getRecipe(props.id)
+        getRecipe(match.params.id)
             .then(res => {
                 setRecipe(res);
                 setIsLoading(false);
@@ -27,7 +34,7 @@ const RecipeDetails = (props) => {
                 })
                 .catch(error => console.log(error));
         }
-    }, [props.id, recipe.ownerId]);
+    }, [match, recipe.ownerId]);
 
     return (
         isLoading
@@ -37,7 +44,7 @@ const RecipeDetails = (props) => {
                 <h1 className="recipe-details-title">
                     {recipe.name}
                 </h1>
-                {props.user && props.user.uid === recipe.ownerId ? <RecipeOwnerControl id={props.id} ownerId={recipe.ownerId} user={props.user} history={props.history} recipe={recipe}/> : ''}
+                {user && user.uid === recipe.ownerId ? <RecipeOwnerControl id={match.params.id} ownerId={recipe.ownerId} history={history} recipe={recipe} /> : ''}
                 <div className="recipe-details-prep-time">
                     <i className="far fa-clock"></i>{recipe.prepTime} minutes
                 </div>
@@ -69,7 +76,7 @@ const RecipeDetails = (props) => {
                         {userProfile.displayName}
                     </Link>
                 </div>
-                {props.user && <RecipeLikes likesArr={recipe.likes} recipeId={props.id} user={props.user} />}
+                {user && <RecipeLikes likesArr={recipe.likes} recipeId={match.params.id} />}
             </section>
     );
 }

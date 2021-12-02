@@ -1,42 +1,43 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
+import AuthContext from '../../contexts/AuthContext';
 import { getUserProfile, getUserRecipes } from '../../services/services';
 import RecipeCard from '../RecipeCard/RecipeCard';
 
-const UserProfilePage = ({
-    id,
-    currentUser
-}) => {
+
+const UserProfilePage = ({ match }) => {
+    const user = useContext(AuthContext);
+
     const [recipes, setRecipes] = useState([]);
     const [userProfile, setUserProfile] = useState({});
 
     useEffect(() => {
-        getUserProfile(id)
+        getUserProfile(match.params.id)
             .then(res => {
                 setUserProfile(res);
             });
 
-        if (currentUser && currentUser.uid === id) {
-            getUserRecipes(id)
+        if (user && user.uid === match.params.id) {
+            getUserRecipes(match.params.id)
                 .then(res => {
                     setRecipes(res)
                 })
                 .catch(error => console.log(error));
         } else {
-            getUserRecipes(id, true)
+            getUserRecipes(match.params.id, true)
                 .then(res => {
                     setRecipes(res)
                 })
                 .catch(error => console.log(error));
         }
-    }, [id, userProfile.userUID]);
+    }, [match, userProfile.userUID]);
 
     return (
         userProfile.displayName
             ?
             <section className="user-recipes">
                 <h1 className="user-recipes-title">
-                    {currentUser && currentUser.uid === userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
+                    {user && user.uid === userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
                 </h1>
                 {recipes.length > 0
                     ?

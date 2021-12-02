@@ -17,6 +17,7 @@ import RecipeForm from './components/RecipeForm/RecipeForm';
 
 import './App.css';
 
+
 function App() {
     const [user, setUser] = useState(null);
 
@@ -40,14 +41,12 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={LandingPage} />
                     <Route path="/recipes" exact component={Catalog} />
-                    <Route path="/recipes/:id/details" render={({ match }) => (
-                        <RecipeDetails id={match.params.id} user={user} />
-                    )} />
+                    <Route path="/recipes/:id/details" exact component={RecipeDetails} />
                     <Route path="/recipes/add" render={({ history }) => (
-                        <RecipeForm user={user} mode={'Add'} history={history} />
+                        <RecipeForm mode={'Add'} history={history} />
                     )} />
                     <Route path="/recipes/:id/edit" render={({ match, history }) => (
-                        <RecipeForm user={user} mode={'Edit'} id={match.params.id} history={history} />
+                        <RecipeForm mode={'Edit'} id={match.params.id} history={history} />
                     )} />
                     <Route path="/sign-up" component={SignUp} />
                     <Route path="/sign-in" component={SignIn} />
@@ -56,12 +55,8 @@ function App() {
 
                         return <Redirect to="/recipes" />
                     }} />
-                    <Route path="/users/:id/recipes" exact render={({ match }) => (
-                        <UserProfilePage id={match.params.id} currentUser={user} />
-                    )} />
-                    <Route path="/users/:id/recipes/liked" exact render={({ match }) => (
-                        <LikedRecipesPage id={match.params.id} user={user} />
-                    )} />
+                    <Route path="/users/:id/recipes" exact component={UserProfilePage} />
+                    <Route path="/users/:id/recipes/liked" exact component={LikedRecipesPage} />
                 </Switch>
             </div>
         </AuthContext.Provider>
