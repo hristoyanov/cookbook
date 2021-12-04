@@ -46,7 +46,7 @@ const RecipeDetails = ({
                 </h1>
                 {user && user.uid === recipe.ownerId ? <RecipeOwnerControl id={match.params.id} ownerId={recipe.ownerId} history={history} recipe={recipe} /> : ''}
                 <div className="recipe-details-prep-time">
-                    <i className="far fa-clock"></i>{recipe.prepTime} minutes
+                    <i className="far fa-clock"></i>{recipe.prepTime} {recipe.prepTime === 1 ? 'minute' : 'minutes'}
                 </div>
                 <article className="recipe-details-content">
                     <div className="recipe-details-content-img">

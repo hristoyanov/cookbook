@@ -2,6 +2,7 @@ import { auth, createUserWithEmailAndPassword, updateProfile } from '../../fireb
 
 import { createUserProfile } from '../../services/services';
 
+
 const SignUp = ({ history }) => {
     const onSignUpSubmitHandler = (e) => {
         e.preventDefault();

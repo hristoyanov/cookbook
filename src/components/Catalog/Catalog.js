@@ -5,6 +5,7 @@ import RecipeCard from '../../components/RecipeCard/RecipeCard';
 
 import './Catalog.css';
 
+
 const Catalog = () => {
     const [recipes, setRecipes] = useState([]);
     const [mode, setMode] = useState('latest');

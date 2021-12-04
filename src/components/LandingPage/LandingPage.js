@@ -6,6 +6,7 @@ import GuestSection from './GuestSection/GuestSection';
 
 import './LandingPage.css';
 
+
 const LandingPage = () => {
     const user = useContext(AuthContext);
 

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import './RecipeCard.css';
 
+
 const RecipeCard = ({
     id,
     name,
@@ -18,7 +19,7 @@ const RecipeCard = ({
                 <img src={imageURL} alt="recipe-img" />
             </div>
             <div className="recipes-list-item-prep-time">
-                <i className="far fa-clock"></i>{prepTime} minutes
+                <i className="far fa-clock"></i>{prepTime} {prepTime === 1 ? 'minute' : 'minutes'}
             </div>
             <div className="recipes-list-item-likes">
                 {likes.length === 1
