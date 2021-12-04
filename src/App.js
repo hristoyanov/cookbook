@@ -37,7 +37,7 @@ function App() {
     return (
         <AuthContext.Provider value={user}>
             <div className="container">
-                {location.pathname === "/" ? null : <Header user={user} />}
+                {location.pathname === "/" ? null : <Header />}
 
                 <Switch>
                     <Route path="/" exact component={LandingPage} />

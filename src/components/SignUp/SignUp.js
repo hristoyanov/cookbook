@@ -1,4 +1,4 @@
-import { auth, createUserWithEmailAndPassword } from '../../firebase';
+import { auth, createUserWithEmailAndPassword, updateProfile } from '../../firebase';
 
 import { createUserProfile } from '../../services/services';
 
@@ -18,6 +18,10 @@ const SignUp = ({ history }) => {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
+
+                updateProfile(user, {
+                    displayName: displayName
+                });
 
                 createUserProfile(user.uid, displayName);
 

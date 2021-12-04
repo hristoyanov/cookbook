@@ -1,13 +1,15 @@
+import {useContext} from 'react';
 import { Link } from 'react-router-dom';
 
+import AuthContext from '../../contexts/AuthContext';
 import UserNavigation from './UserNavigation/UserNavigation';
 import GuestNavigation from './GuestNavigation/GuestNavigation';
 
 import './Header.css';
 
-const Header = ({
-    user
-}) => {
+const Header = () => {
+    const user = useContext(AuthContext);
+
     return (
         <header className="page-header">
             <nav className="page-header-nav">
