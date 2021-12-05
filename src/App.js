@@ -26,8 +26,14 @@ function App() {
         auth.onAuthStateChanged((authUser) => {
             if (authUser) {
                 setUser(authUser);
+                sessionStorage.setItem('user', JSON.stringify({
+                    email: authUser.email,
+                    displayName: authUser.displayName,
+                    uid: authUser.uid
+                }));
             } else {
                 setUser(null);
+                sessionStorage.removeItem('user');
             }
         });
     }, []);
@@ -43,8 +49,8 @@ function App() {
                     <Route path="/" exact component={LandingPage} />
                     <Route path="/recipes" exact component={Catalog} />
                     <Route path="/recipes/:id/details" exact component={RecipeDetails} />
-                    <Route path="/recipes/add" render={props => user ? <RecipeForm {...props} mode={'Add'} /> : <Redirect to="/sign-in" />} />
-                    <Route path="/recipes/:id/edit" render={props => user ? <RecipeForm {...props} mode={'Edit'} /> : <Redirect to="/sign-in" />} />
+                    <Route path="/recipes/add" render={props => sessionStorage.getItem('user') ? <RecipeForm {...props} mode={'Add'} /> : <Redirect to="/sign-in" />} />
+                    <Route path="/recipes/:id/edit" render={props => sessionStorage.getItem('user') ? <RecipeForm {...props} mode={'Edit'} /> : <Redirect to="/sign-in" />} />
                     <Route path="/sign-up" component={SignUp} />
                     <Route path="/sign-in" component={SignIn} />
                     <Route path="/sign-out" render={() => {

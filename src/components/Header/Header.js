@@ -18,10 +18,12 @@ const Header = () => {
                     <Link className="page-name-link" to="/recipes">Cookbook</Link>
                 </div>
                 <div className="page-header-nav-links">
-                    {user && user.email
-                        ? <UserNavigation user={user} />
-                        : <GuestNavigation />
-                    }
+                    <ul className="page-header-nav-links-list">
+                        {user && user.email
+                            ? <UserNavigation user={user} />
+                            : <GuestNavigation />
+                        }
+                    </ul>
                 </div>
             </nav>
 

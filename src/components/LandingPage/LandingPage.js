@@ -1,15 +1,11 @@
-import { useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import AuthContext from '../../contexts/AuthContext';
 import GuestSection from './GuestSection/GuestSection';
 
 import './LandingPage.css';
 
 
 const LandingPage = () => {
-    const user = useContext(AuthContext);
-
     return (
         <section className="landing-page">
             <header className="landing-page-header">
@@ -32,7 +28,7 @@ const LandingPage = () => {
                         <button className="browse-recipes-btn">Browse</button>
                     </Link>
                 </article>
-                {!user ? <GuestSection /> : <Redirect to="/recipes"/>}
+                {!sessionStorage.getItem('user') ? <GuestSection /> : null}
             </div>
         </section>
     );

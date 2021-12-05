@@ -7,7 +7,7 @@ const UserNavigation = ({
     return (
         user && user.email
             ?
-            <ul className="page-header-nav-links-list">
+            <>
                 <li>
                     Signed in as <span className="user-info">{user.email}</span>
                 </li>
@@ -18,12 +18,15 @@ const UserNavigation = ({
                     <NavLink to={`/users/${user.uid}/recipes/liked`} exact activeClassName="active">Liked Recipes</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/recipes/add" activeClassName="active">Add Recipe</NavLink>
+                    <NavLink to="/recipes/add" exact activeClassName="active">Add Recipe</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/recipes" exact activeClassName="active">Recipes</NavLink>
                 </li>
                 <li>
                     <Link to="/sign-out">Sign Out</Link>
                 </li>
-            </ul>
+            </>
             :
             null
     );
