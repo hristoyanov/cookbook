@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import GuestSection from './GuestSection/GuestSection';
 
@@ -28,7 +28,7 @@ const LandingPage = () => {
                         <button className="browse-recipes-btn">Browse</button>
                     </Link>
                 </article>
-                {!sessionStorage.getItem('user') ? <GuestSection /> : null}
+                {!sessionStorage.getItem('user') ? <GuestSection /> : <Redirect to="/recipes"/>}
             </div>
         </section>
     );

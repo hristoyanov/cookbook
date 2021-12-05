@@ -1,8 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import AuthContext from '../../contexts/AuthContext';
 import { getUserProfile, getUserRecipes } from '../../services/services';
 import RecipeCard from '../RecipeCard/RecipeCard';
+
+import './UserProfilePage.css';
 
 
 const UserProfilePage = ({ match }) => {
@@ -39,6 +42,8 @@ const UserProfilePage = ({ match }) => {
                 <h1 className="user-recipes-title">
                     {user && user.uid === userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
                 </h1>
+                {user.uid !== userProfile.userUID
+                    ? <Link to={`/users/${userProfile.userUID}/recipes/liked`} className='user-liked-recipes-link'>Liked</Link> : null}
                 {recipes.length > 0
                     ?
                     <ul className="user-recipes-list">

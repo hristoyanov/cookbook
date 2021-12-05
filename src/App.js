@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { auth, signOut } from './firebase';
 
@@ -38,12 +38,10 @@ function App() {
         });
     }, []);
 
-    const location = useLocation();
-
     return (
         <AuthContext.Provider value={user}>
             <div className="container">
-                {location.pathname === "/" ? null : <Header />}
+                <Header />
 
                 <Switch>
                     <Route path="/" exact component={LandingPage} />
