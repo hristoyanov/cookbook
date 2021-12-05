@@ -1,7 +1,7 @@
 .user-liked-recipes-link {
     text-decoration: none;
-    margin-bottom: 10px;
-    padding: 10px;
+    font-weight: bold;
+    padding: 5px 15px;
     background: orange;
     color: white;
     border-radius: 5px;

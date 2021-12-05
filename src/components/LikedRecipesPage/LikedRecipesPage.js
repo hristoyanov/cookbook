@@ -22,7 +22,7 @@ const LikedRecipesPage = ({ match }) => {
                 setRecipes(res)
             })
             .catch(error => console.log(error));
-    }, [match, userProfile.userUID]);
+    }, [match]);
 
     return (
         userProfile?.userUID ?

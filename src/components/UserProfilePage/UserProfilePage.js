@@ -33,7 +33,7 @@ const UserProfilePage = ({ match }) => {
                 })
                 .catch(error => console.log(error));
         }
-    }, [match, userProfile.userUID]);
+    }, [match]);
 
     return (
         userProfile.displayName
@@ -42,8 +42,6 @@ const UserProfilePage = ({ match }) => {
                 <h1 className="user-recipes-title">
                     {user && user.uid === userProfile.userUID ? 'My recipes' : `${userProfile.displayName}'s recipes`}
                 </h1>
-                {user.uid !== userProfile.userUID
-                    ? <Link to={`/users/${userProfile.userUID}/recipes/liked`} className='user-liked-recipes-link'>Liked</Link> : null}
                 {recipes.length > 0
                     ?
                     <ul className="user-recipes-list">
@@ -52,7 +50,11 @@ const UserProfilePage = ({ match }) => {
                         )}
                     </ul>
                     :
-                    'No recipes yet.'}
+                    <h3>No recipes yet.</h3>}
+                {user.uid !== userProfile.userUID
+                    ? <Link to={`/users/${userProfile.userUID}/recipes/liked`} className='user-liked-recipes-link'>Liked</Link>
+                    : null
+                }
             </section>
             :
             <h1 className="placeholder-title">
