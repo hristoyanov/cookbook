@@ -6,6 +6,8 @@ import { auth, signOut } from './firebase';
 import AuthContext from './contexts/AuthContext';
 import isAuth from './hoc/isAuth';
 
+import CustomErrorBoundary from './components/CustomErrorBoundary/CustomErrorBoundary';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 import Header from './components/Header/Header';
 import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';
@@ -42,23 +44,25 @@ function App() {
         <AuthContext.Provider value={user}>
             <div className="container">
                 <Header />
+                <CustomErrorBoundary>
+                    <Switch>
+                        <Route path="/" exact component={LandingPage} />
+                        <Route path="/recipes" exact component={Catalog} />
+                        <Route path="/recipes/:id/details" exact component={RecipeDetails} />
+                        <Route path="/recipes/add" render={props => sessionStorage.getItem('user') ? <RecipeForm {...props} mode={'Add'} /> : <Redirect to="/sign-in" />} />
+                        <Route path="/recipes/:id/edit" render={props => sessionStorage.getItem('user') ? <RecipeForm {...props} mode={'Edit'} /> : <Redirect to="/sign-in" />} />
+                        <Route path="/sign-up" component={SignUp} />
+                        <Route path="/sign-in" component={SignIn} />
+                        <Route path="/sign-out" render={() => {
+                            signOut(auth);
 
-                <Switch>
-                    <Route path="/" exact component={LandingPage} />
-                    <Route path="/recipes" exact component={Catalog} />
-                    <Route path="/recipes/:id/details" exact component={RecipeDetails} />
-                    <Route path="/recipes/add" render={props => sessionStorage.getItem('user') ? <RecipeForm {...props} mode={'Add'} /> : <Redirect to="/sign-in" />} />
-                    <Route path="/recipes/:id/edit" render={props => sessionStorage.getItem('user') ? <RecipeForm {...props} mode={'Edit'} /> : <Redirect to="/sign-in" />} />
-                    <Route path="/sign-up" component={SignUp} />
-                    <Route path="/sign-in" component={SignIn} />
-                    <Route path="/sign-out" render={() => {
-                        signOut(auth);
-
-                        return <Redirect to="/recipes" />
-                    }} />
-                    <Route path="/users/:id/recipes" exact component={isAuth(UserProfilePage)} />
-                    <Route path="/users/:id/recipes/liked" exact component={isAuth(LikedRecipesPage)} />
-                </Switch>
+                            return <Redirect to="/recipes" />
+                        }} />
+                        <Route path="/users/:id/recipes" exact component={isAuth(UserProfilePage)} />
+                        <Route path="/users/:id/recipes/liked" exact component={isAuth(LikedRecipesPage)} />
+                        <Route path="*" component={PageNotFound} />
+                    </Switch>
+                </CustomErrorBoundary>
             </div>
         </AuthContext.Provider>
     );
