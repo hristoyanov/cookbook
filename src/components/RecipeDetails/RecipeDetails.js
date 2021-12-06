@@ -40,6 +40,9 @@ const RecipeDetails = ({
         isLoading
             ? <h1>Loading recipe...</h1>
             :
+            recipe.hidden
+            ? <h1>This recipe is private.</h1>
+            :
             <section className="recipe-details">
                 <h1 className="recipe-details-title">
                     {recipe.name}
