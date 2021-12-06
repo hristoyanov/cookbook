@@ -134,6 +134,19 @@ async function updateRecipeLikes(recipeId, userId, liked) {
     }
 }
 
+async function addRecipeComment(recipeId, userId, content) {
+    const recipeRef = doc(db, 'recipes', recipeId);
+    const comment = {
+        content,
+        userId,
+        createdAt: Timestamp.now()
+    }
+
+    return await updateDoc(recipeRef, {
+        comments: arrayUnion(comment)
+    });
+}
+
 export {
     db,
     createUserProfile,
@@ -145,5 +158,6 @@ export {
     addRecipe,
     editRecipe,
     deleteRecipe,
-    updateRecipeLikes
+    updateRecipeLikes,
+    addRecipeComment
 };
