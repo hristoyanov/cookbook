@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import {
     getDoc,
     getDocs,
@@ -134,12 +135,16 @@ async function updateRecipeLikes(recipeId, userId, liked) {
     }
 }
 
-async function addRecipeComment(recipeId, userId, content) {
+async function addRecipeComment(recipeId, userId, displayName, content) {
     const recipeRef = doc(db, 'recipes', recipeId);
     const comment = {
         content,
-        userId,
-        createdAt: Timestamp.now()
+        author: {
+            userId,
+            displayName
+        },
+        createdAt: Timestamp.now(),
+        id: uuidv4()
     }
 
     return await updateDoc(recipeRef, {

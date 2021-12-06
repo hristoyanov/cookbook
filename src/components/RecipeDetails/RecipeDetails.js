@@ -5,6 +5,7 @@ import AuthContext from '../../contexts/AuthContext';
 import { getUserProfile, getRecipe, addRecipeComment } from '../../services/services';
 import RecipeOwnerControl from '../RecipeOwnerControl/RecipeOwnerControl';
 import RecipeLikes from '../RecipeLikes/RecipeLikes';
+import Comment from '../Comment/Comment';
 
 import './RecipeDetails.css';
 
@@ -39,8 +40,10 @@ const RecipeDetails = ({
     const addCommentHandler = (e) => {
         const content = e.target.parentNode.firstChild.value;
 
-        addRecipeComment(match.params.id, user.uid, content)
+        addRecipeComment(match.params.id, user.uid, user.displayName, content)
             .catch(error => console.log(error));
+
+        e.target.parentNode.firstChild.value = '';
     }
 
     return (
@@ -90,6 +93,11 @@ const RecipeDetails = ({
                     <div className="add-comment-container">
                         <textarea name="comment-area" id="comment-area" cols="30" rows="10"></textarea>
                         <button className="add-comment-btn" onClick={addCommentHandler}>Add comment</button>
+                    </div>
+                    <div className="comments-container">
+                        {!isLoading ? recipe.comments.map(x =>
+                            <Comment key={x.id} {...x}/>
+                        ) : null}
                     </div>
                 </section>
     );
