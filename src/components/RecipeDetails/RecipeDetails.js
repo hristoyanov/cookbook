@@ -2,10 +2,10 @@ import { useEffect, useState, useContext } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
 import AuthContext from '../../contexts/AuthContext';
-import { getUserProfile, getRecipe, addRecipeComment } from '../../services/services';
+import { getUserProfile, getRecipe } from '../../services/services';
 import RecipeOwnerControl from '../RecipeOwnerControl/RecipeOwnerControl';
 import RecipeLikes from '../RecipeLikes/RecipeLikes';
-import Comment from '../Comment/Comment';
+import CommentSection from '../CommentSection/CommentSection';
 
 import './RecipeDetails.css';
 
@@ -37,15 +37,6 @@ const RecipeDetails = ({
         }
     }, [match, recipe.ownerId]);
 
-    const addCommentHandler = (e) => {
-        const content = e.target.parentNode.firstChild.value;
-
-        addRecipeComment(match.params.id, user.uid, user.displayName, content)
-            .catch(error => console.log(error));
-
-        e.target.parentNode.firstChild.value = '';
-    }
-
     return (
         isLoading
             ? <h1>Loading recipe...</h1>
@@ -54,51 +45,45 @@ const RecipeDetails = ({
                 ? <h1>This recipe is private.</h1>
                 :
                 <section className="recipe-details">
-                    <h1 className="recipe-details-title">
-                        {recipe.name}
-                    </h1>
-                    {user && user.uid === recipe.ownerId ? <RecipeOwnerControl id={match.params.id} ownerId={recipe.ownerId} history={history} recipe={recipe} /> : ''}
-                    <div className="recipe-details-prep-time">
-                        <i className="far fa-clock"></i>{recipe.prepTime} {recipe.prepTime === 1 ? 'minute' : 'minutes'}
-                    </div>
-                    <article className="recipe-details-content">
-                        <div className="recipe-details-content-img">
-                            <img src={recipe.imageURL} alt="recipe-img" />
+                    <article className="recipe-details-recipe-card">
+                        <h1 className="recipe-details-title">
+                            {recipe.name}
+                        </h1>
+                        {user && user.uid === recipe.ownerId ? <RecipeOwnerControl id={match.params.id} ownerId={recipe.ownerId} history={history} recipe={recipe} /> : ''}
+                        <div className="recipe-details-prep-time">
+                            <i className="far fa-clock"></i>{recipe.prepTime} {recipe.prepTime === 1 ? 'minute' : 'minutes'}
                         </div>
-                        <div className="recipe-details-content-ingredients">
-                            <h2 className="recipe-details-content-ingredients-heading">
-                                Ingredients:
-                            </h2>
-                            <ul className="recipe-details-content-ingredients-list">
-                                {recipe.ingredients.map((x, i) =>
-                                    <li className="recipe-details-content-ingredients-list-item" key={i}>{x}</li>)}
-                            </ul>
-                        </div>
-                        <div className="recipe-details-content-preparation">
-                            <h2 className="recipe-details-content-preparation-heading">
-                                Preparation:
-                            </h2>
-                            <div className="recipe-details-content-preparation-text">
-                                {recipe.preparation}
+                        <article className="recipe-details-content">
+                            <div className="recipe-details-content-img">
+                                <img src={recipe.imageURL} alt="recipe-img" />
                             </div>
+                            <div className="recipe-details-content-ingredients">
+                                <h2 className="recipe-details-content-ingredients-heading">
+                                    Ingredients:
+                                </h2>
+                                <ul className="recipe-details-content-ingredients-list">
+                                    {recipe.ingredients.map((x, i) =>
+                                        <li className="recipe-details-content-ingredients-list-item" key={i}>{x}</li>)}
+                                </ul>
+                            </div>
+                            <div className="recipe-details-content-preparation">
+                                <h2 className="recipe-details-content-preparation-heading">
+                                    Preparation:
+                                </h2>
+                                <div className="recipe-details-content-preparation-text">
+                                    {recipe.preparation}
+                                </div>
+                            </div>
+                        </article>
+                        <div className="recipe-details-author-container">
+                            Created by:
+                            <Link to={`/users/${recipe.ownerId}/recipes`} className="recipe-details-author">
+                                {userProfile.displayName}
+                            </Link>
                         </div>
+                        {!user || user?.uid === recipe?.ownerId ? null : <RecipeLikes likesArr={recipe.likes} recipeId={match.params.id} />}
                     </article>
-                    <div className="recipe-details-author-container">
-                        Created by:
-                        <Link to={`/users/${recipe.ownerId}/recipes`} className="recipe-details-author">
-                            {userProfile.displayName}
-                        </Link>
-                    </div>
-                    {!user || user?.uid === recipe?.ownerId ? null : <RecipeLikes likesArr={recipe.likes} recipeId={match.params.id} />}
-                    <div className="add-comment-container">
-                        <textarea name="comment-area" id="comment-area" cols="30" rows="10"></textarea>
-                        <button className="add-comment-btn" onClick={addCommentHandler}>Add comment</button>
-                    </div>
-                    <div className="comments-container">
-                        {!isLoading ? recipe.comments.map(x =>
-                            <Comment key={x.id} {...x}/>
-                        ) : null}
-                    </div>
+                    {!isLoading ? <CommentSection user={user} recipe={recipe} recipeId={match.params.id} /> : null}
                 </section>
     );
 }

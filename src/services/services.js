@@ -144,11 +144,33 @@ async function addRecipeComment(recipeId, userId, displayName, content) {
             displayName
         },
         createdAt: Timestamp.now(),
+        editedAt: null,
         id: uuidv4()
     }
 
     return await updateDoc(recipeRef, {
         comments: arrayUnion(comment)
+    });
+}
+
+async function editRecipeComment(recipeId, user, content, oldComment) {
+    const recipeRef = doc(db, 'recipes', recipeId);
+
+    await updateDoc(recipeRef, {
+        comments: arrayRemove(oldComment)
+    });
+
+    return await updateDoc(recipeRef, {
+        comments: arrayUnion({
+            content,
+            author: {
+                userId: user.uid,
+                displayName: user.displayName
+            },
+            createdAt: oldComment.createdAt,
+            editedAt: Timestamp.now(),
+            id: oldComment.id
+        })
     });
 }
 
@@ -164,5 +186,6 @@ export {
     editRecipe,
     deleteRecipe,
     updateRecipeLikes,
-    addRecipeComment
+    addRecipeComment,
+    editRecipeComment
 };
