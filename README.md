@@ -10,10 +10,12 @@ An application for sharing cooking recipes. Users can view, create and like reci
 ### Registered users:
 - Can create their own recipes.
 - View other users' public recipes.
+- Comment on recipes.
+- Edit and delete their comments.
 - Like recipes.
-- View recipes they have liked.
-- Edit their own recipes.
-- Delete their own recipes.
+- View a list of recipes they have liked.
+- View their recipes on their profile page.
+- Edit and delete their own recipes.
 - Set public/private status for their recipes (Determines recipe visibility to other users).
 
 ## Creating an account

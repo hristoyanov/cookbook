@@ -43,7 +43,7 @@ const CommentSection = ({
 
     const editCommentClickHandler = (commentId) => {
         const oldComment = recipeComments.find(x => x.id === commentId);
-        
+
         setCommentToEdit(oldComment);
 
         commentTextAreaRef.current.focus();
@@ -56,10 +56,12 @@ const CommentSection = ({
 
     return (
         <div className="comments-section">
-            <div className="comments-section-add-comment">
-                <textarea ref={commentTextAreaRef} name="comment-area" id="comment-area" cols="30" rows="10"></textarea>
-                <button className="add-comment-btn" onClick={commentHandler}>Submit</button>
-            </div>
+            {user ?
+                <div className="comments-section-add-comment">
+                    <textarea ref={commentTextAreaRef} name="comment-area" id="comment-area" cols="30" rows="10"></textarea>
+                    <button className="add-comment-btn" onClick={commentHandler}>Submit</button>
+                </div>
+                : null}
             <div className="comments-section-comments">
                 {recipeComments.sort((a, b) => b.createdAt - a.createdAt).map(x =>
                     <Comment key={x.id} user={user} editCommentHandler={editCommentClickHandler} deleteCommentHandler={deleteCommentClickHandler} {...x} />
