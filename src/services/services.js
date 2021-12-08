@@ -153,25 +153,30 @@ async function addRecipeComment(recipeId, userId, displayName, content) {
     });
 }
 
-async function editRecipeComment(recipeId, user, content, oldComment) {
+async function modifyRecipeComment(recipeId, user, content, oldComment) {
     const recipeRef = doc(db, 'recipes', recipeId);
+    let res = null;
 
-    await updateDoc(recipeRef, {
+    res = await updateDoc(recipeRef, {
         comments: arrayRemove(oldComment)
     });
 
-    return await updateDoc(recipeRef, {
-        comments: arrayUnion({
-            content,
-            author: {
-                userId: user.uid,
-                displayName: user.displayName
-            },
-            createdAt: oldComment.createdAt,
-            editedAt: Timestamp.now(),
-            id: oldComment.id
-        })
-    });
+    if (content) {
+        res = await updateDoc(recipeRef, {
+            comments: arrayUnion({
+                content,
+                author: {
+                    userId: user.uid,
+                    displayName: user.displayName
+                },
+                createdAt: oldComment.createdAt,
+                editedAt: Timestamp.now(),
+                id: oldComment.id
+            })
+        });
+    }
+
+    return res;
 }
 
 export {
@@ -187,5 +192,5 @@ export {
     deleteRecipe,
     updateRecipeLikes,
     addRecipeComment,
-    editRecipeComment
+    modifyRecipeComment
 };

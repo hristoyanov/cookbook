@@ -1,7 +1,7 @@
 import { useState, useEffect, createRef } from 'react';
 
 import Comment from '../Comment/Comment';
-import { getRecipe, addRecipeComment, editRecipeComment } from '../../services/services';
+import { getRecipe, addRecipeComment, modifyRecipeComment } from '../../services/services';
 
 
 const CommentSection = ({
@@ -32,7 +32,7 @@ const CommentSection = ({
             addRecipeComment(recipeId, user.uid, user.displayName, content)
                 .catch(error => console.log(error));
         } else {
-            editRecipeComment(recipeId, user, content, commentToEdit)
+            modifyRecipeComment(recipeId, user, content, commentToEdit)
                 .catch(error => console.log(error));
         }
 
@@ -51,7 +51,14 @@ const CommentSection = ({
     }
 
     const deleteCommentClickHandler = (commentId) => {
-        return null;
+        if (window.confirm('Delete comment?')) {
+            const comment = recipeComments.find(x => x.id === commentId);
+
+            modifyRecipeComment(recipeId, user, null, comment)
+                .catch(error => console.log(error));
+
+            setCommentCounter(commentCounter + 1);
+        }
     }
 
     return (
