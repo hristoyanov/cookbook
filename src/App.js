@@ -1,7 +1,6 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { auth, signOut } from './firebase';
-
 import { AuthProvider } from './contexts/AuthContext';
 import isAuth from './hoc/isAuth';
 
@@ -22,10 +21,10 @@ import './App.css';
 
 function App() {
     return (
-        <AuthProvider>
-            <div className="container">
-                <Header />
-                <CustomErrorBoundary>
+        <CustomErrorBoundary>
+            <AuthProvider>
+                <div className="container">
+                    <Header />
                     <Switch>
                         <Route path="/" exact component={LandingPage} />
                         <Route path="/recipes" exact component={Catalog} />
@@ -43,9 +42,9 @@ function App() {
                         <Route path="/users/:id/recipes/liked" exact component={isAuth(LikedRecipesPage)} />
                         <Route path="*" component={PageNotFound} />
                     </Switch>
-                </CustomErrorBoundary>
-            </div>
-        </AuthProvider>
+                </div>
+            </AuthProvider>
+        </CustomErrorBoundary>
     );
 }
 

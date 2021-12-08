@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import { useAuthContext } from '../../contexts/AuthContext';
 import { deleteRecipe } from '../../services/services';
 
@@ -29,7 +27,7 @@ const RecipeOwnerControl = ({
 
     return (
         <div className="recipe-details-buttons-container">
-            <Link to={`/recipes/${id}/edit`} className='edit-link'>Edit</Link>
+            <button className="edit-btn" onClick={() => history.push(`/recipes/${id}/edit`)}>Edit</button>
             <button className="delete-btn" onClick={onDeleteClickHandler}>Delete</button>
         </div>
     );

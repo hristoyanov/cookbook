@@ -104,7 +104,7 @@ const RecipeForm = ({
                     <label htmlFor="preparation">Preparation</label>
                     <textarea name="preparation" id="preparation" cols="30" rows="7" defaultValue={loaded ? recipe.preparation : ''} required></textarea>
                     <label htmlFor="visibility">This recipe should be:</label>
-                    <select type="text" name="visibility" id="visibility">
+                    <select type="text" name="visibility" id="visibility" defaultValue={!loaded ? null : recipe.hidden ? 'private' : 'public'}>
                         <option value="public">Public</option>
                         <option value="private">Private</option>
                     </select>

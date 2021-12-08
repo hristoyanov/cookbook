@@ -41,7 +41,7 @@ const RecipeDetails = ({
         isLoading
             ? <h1>Loading recipe...</h1>
             :
-            recipe.hidden
+            recipe.hidden && recipe.ownerId !== user?.uid
                 ? <h1>This recipe is private.</h1>
                 :
                 <section className="recipe-details">
@@ -83,7 +83,7 @@ const RecipeDetails = ({
                         </div>
                         {!user || user?.uid === recipe?.ownerId ? null : <RecipeLikes likesArr={recipe.likes} recipeId={match.params.id} />}
                     </article>
-                    {!isLoading ? <CommentSection user={user} recipe={recipe} recipeId={match.params.id} /> : null}
+                    {!isLoading && !recipe.hidden ? <CommentSection user={user} recipe={recipe} recipeId={match.params.id} /> : null}
                 </section>
     );
 }

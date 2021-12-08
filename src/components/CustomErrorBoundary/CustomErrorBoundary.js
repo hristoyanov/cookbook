@@ -4,20 +4,22 @@ class CustomErrorBoundary extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { hasError: false };
+        this.state = { error: null };
     }
 
     static getDerivedStateFromError(error) {
-        return { hasError: true }
+        return { error };
     }
 
-    componentDidCatch(error, errorInfo) {
-        console.log(error, errorInfo);
+    componentDidCatch(error) {
+        console.log(error);
     }
 
     render() {
-        if (this.state.hasError) {
-            return <h1>Something went wrong.</h1>
+        if (this.state.error) {
+            return (
+                <h1>Something went wrong. It happens.</h1>
+            );
         }
 
         return this.props.children;

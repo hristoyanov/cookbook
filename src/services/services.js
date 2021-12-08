@@ -107,6 +107,7 @@ async function addRecipe(name, imageURL, ingredients, prepTime, preparation, hid
         hidden,
         ownerId,
         likes: [],
+        comments: [],
         createdAt: Timestamp.now()
     });
 }

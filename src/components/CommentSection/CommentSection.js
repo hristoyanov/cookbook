@@ -57,11 +57,12 @@ const CommentSection = ({
             const comment = recipeComments.find(x => x.id === commentId);
 
             modifyRecipeComment(recipeId, user, null, comment)
+                .then(() => {
+                    commentTextAreaRef.current.value = '';
+
+                    setCommentCounter(commentCounter + 1);
+                })
                 .catch(error => console.log(error));
-
-            commentTextAreaRef.current.value = '';
-
-            setCommentCounter(commentCounter + 1);
         }
     }
 
