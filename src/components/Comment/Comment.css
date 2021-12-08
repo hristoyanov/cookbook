@@ -1,0 +1,52 @@
+.comment {
+    background: white;
+    color: black;
+    margin: 15px auto;
+    padding: 10px 0;
+    border-radius: 10px;
+    width: 75%;
+    position: relative;
+}
+
+.comment-owner-control {
+    position: absolute;
+    top: 8%;
+    left: 85%;
+}
+
+.comment-owner-control-edit-btn,
+.comment-owner-control-delete-btn {
+    background: orange;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.comment-date {
+    margin: 0 15px 15px 15px;
+    text-align: start;
+    font-weight: bold;
+}
+
+.comment-content {
+    margin: 0 25px;
+    padding: 10px;
+    text-align: start;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.comment-author {
+    margin: 5px 10px;
+    text-align: end;
+}
+
+.comment-author a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}

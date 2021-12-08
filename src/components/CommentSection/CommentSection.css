@@ -1,0 +1,37 @@
+.comment-section {
+    margin: 50px 50px 0 50px;
+    padding: 25px;
+    background: orange;
+    border-radius: 10px;
+}
+
+.comment-section-add-comment {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto 25px auto;
+}
+
+.comment-section-add-comment textarea {
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 25px;
+    padding: 10px;
+    resize: none;
+}
+
+.add-comment-btn {
+    width: 25%;
+    margin: 0 auto;
+    padding: 5px 0;
+    border: none;
+    background: white;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.comment-section-comments {
+    color: white;
+    border-top: 1px solid white;
+}

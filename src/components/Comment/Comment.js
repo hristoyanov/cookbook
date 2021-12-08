@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import './Comment.css';
+
 
 const Comment = ({
     editCommentHandler,
@@ -25,7 +27,9 @@ const Comment = ({
                     <button className="comment-owner-control-delete-btn" onClick={() => deleteCommentHandler(id)}>Delete</button>
                 </div>
                 : null}
-            <Link to={`/users/${author.userId}/recipes`} className="comment-author">Posted by: {author.displayName}</Link>
+            <p className="comment-author">
+                Posted by: <Link to={`/users/${author.userId}/recipes`} className="comment-author-link">{author.displayName}</Link>
+            </p>
         </article>
     );
 }

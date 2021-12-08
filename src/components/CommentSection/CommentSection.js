@@ -3,6 +3,8 @@ import { useState, useEffect, createRef } from 'react';
 import Comment from '../Comment/Comment';
 import { getRecipe, addRecipeComment, modifyRecipeComment } from '../../services/services';
 
+import './CommentSection.css';
+
 
 const CommentSection = ({
     user,
@@ -57,19 +59,24 @@ const CommentSection = ({
             modifyRecipeComment(recipeId, user, null, comment)
                 .catch(error => console.log(error));
 
+            commentTextAreaRef.current.value = '';
+
             setCommentCounter(commentCounter + 1);
         }
     }
 
     return (
-        <div className="comments-section">
+        <div className="comment-section">
             {user ?
-                <div className="comments-section-add-comment">
-                    <textarea ref={commentTextAreaRef} name="comment-area" id="comment-area" cols="30" rows="10"></textarea>
-                    <button className="add-comment-btn" onClick={commentHandler}>Submit</button>
+                <div className="comment-section-add-comment">
+                    <textarea ref={commentTextAreaRef} name="comment-area" id="comment-area" cols="30" rows="10" placeholder="Leave a comment."></textarea>
+                    <button className="add-comment-btn" onClick={commentHandler}>Submit comment</button>
                 </div>
                 : null}
-            <div className="comments-section-comments">
+            <div className="comment-section-comments">
+                <h2 className="comment-section-comments-heading">
+                    Comments
+                </h2>
                 {recipeComments.sort((a, b) => b.createdAt - a.createdAt).map(x =>
                     <Comment key={x.id} user={user} editCommentHandler={editCommentClickHandler} deleteCommentHandler={deleteCommentClickHandler} {...x} />
                 )}
