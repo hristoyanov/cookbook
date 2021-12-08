@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { auth, signOut } from './firebase';
 
-import AuthContext from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import isAuth from './hoc/isAuth';
 
 import CustomErrorBoundary from './components/CustomErrorBoundary/CustomErrorBoundary';
@@ -22,26 +21,8 @@ import './App.css';
 
 
 function App() {
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        auth.onAuthStateChanged((authUser) => {
-            if (authUser) {
-                setUser(authUser);
-                sessionStorage.setItem('user', JSON.stringify({
-                    email: authUser.email,
-                    displayName: authUser.displayName,
-                    uid: authUser.uid
-                }));
-            } else {
-                setUser(null);
-                sessionStorage.removeItem('user');
-            }
-        });
-    }, []);
-
     return (
-        <AuthContext.Provider value={user}>
+        <AuthProvider>
             <div className="container">
                 <Header />
                 <CustomErrorBoundary>
@@ -64,7 +45,7 @@ function App() {
                     </Switch>
                 </CustomErrorBoundary>
             </div>
-        </AuthContext.Provider>
+        </AuthProvider>
     );
 }
 

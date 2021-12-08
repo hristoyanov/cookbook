@@ -77,9 +77,12 @@ const CommentSection = ({
                 <h2 className="comment-section-comments-heading">
                     Comments
                 </h2>
-                {recipeComments.sort((a, b) => b.createdAt - a.createdAt).map(x =>
-                    <Comment key={x.id} user={user} editCommentHandler={editCommentClickHandler} deleteCommentHandler={deleteCommentClickHandler} {...x} />
-                )}
+                {recipeComments.length > 0
+                    ?
+                    recipeComments.sort((a, b) => b.createdAt - a.createdAt).map(x =>
+                        <Comment key={x.id} user={user} editCommentHandler={editCommentClickHandler} deleteCommentHandler={deleteCommentClickHandler} {...x} />
+                    )
+                    : <p>No comments yet.</p>}
             </div>
         </div>
     );

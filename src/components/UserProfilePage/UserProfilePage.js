@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import AuthContext from '../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { getUserProfile, getUserRecipes } from '../../services/services';
 import RecipeCard from '../RecipeCard/RecipeCard';
 
@@ -9,7 +9,7 @@ import './UserProfilePage.css';
 
 
 const UserProfilePage = ({ match }) => {
-    const user = useContext(AuthContext);
+    const user = useAuthContext();
 
     const [recipes, setRecipes] = useState([]);
     const [userProfile, setUserProfile] = useState({});

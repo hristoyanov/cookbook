@@ -1,7 +1,6 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import AuthContext from '../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { deleteRecipe } from '../../services/services';
 
 import './RecipeOwnerControl.css';
@@ -12,7 +11,7 @@ const RecipeOwnerControl = ({
     ownerId,
     history
 }) => {
-    const user = useContext(AuthContext);
+    const user = useAuthContext();
 
     async function onDeleteClickHandler(e) {
         e.preventDefault();

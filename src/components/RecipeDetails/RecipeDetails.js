@@ -1,7 +1,7 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
-import AuthContext from '../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 import { getUserProfile, getRecipe } from '../../services/services';
 import RecipeOwnerControl from '../RecipeOwnerControl/RecipeOwnerControl';
 import RecipeLikes from '../RecipeLikes/RecipeLikes';
@@ -14,7 +14,7 @@ const RecipeDetails = ({
     match,
     history
 }) => {
-    const user = useContext(AuthContext);
+    const user = useAuthContext();
 
     const [recipe, setRecipe] = useState({});
     const [isLoading, setIsLoading] = useState(true);

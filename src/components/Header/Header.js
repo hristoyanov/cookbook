@@ -1,7 +1,6 @@
-import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import AuthContext from '../../contexts/AuthContext';
+import {useAuthContext} from '../../contexts/AuthContext';
 import UserNavigation from './UserNavigation/UserNavigation';
 import GuestNavigation from './GuestNavigation/GuestNavigation';
 
@@ -9,7 +8,7 @@ import './Header.css';
 
 
 const Header = () => {
-    const user = useContext(AuthContext);
+    const user = useAuthContext();
     const location = useLocation();
 
     return (
