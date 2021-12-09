@@ -19,28 +19,21 @@ const RecipeOwnerControl = ({
         deleteRecipe(id)
             .then(() => {
                 history.push(`/users/${user.uid}/recipes`);
-            })
-            .finally(() => {
-                setShowDeleteDialog(false);
             });
     }
 
-    const onDeleteClickHandler = (e) => {
-        e.preventDefault();
-
+    const onDeleteClickHandler = () => {
         if (ownerId === user.uid) {
             setShowDeleteDialog(true);
         }
     }
 
     return (
-        <>
+        <div className="recipe-details-buttons-container">
             <ConfirmDialog show={showDeleteDialog} onClose={() => setShowDeleteDialog(false)} onSave={deleteHandler} title="Delete this recipe?" />
-            <div className="recipe-details-buttons-container">
-                <button className="edit-btn" onClick={() => history.push(`/recipes/${id}/edit`)}>Edit</button>
-                <button className="delete-btn" onClick={onDeleteClickHandler}>Delete</button>
-            </div>
-        </>
+            <button className="edit-btn" onClick={() => history.push(`/recipes/${id}/edit`)}>Edit</button>
+            <button className="delete-btn" onClick={onDeleteClickHandler}>Delete</button>
+        </div>
     );
 }
 

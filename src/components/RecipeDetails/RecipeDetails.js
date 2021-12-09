@@ -21,19 +21,29 @@ const RecipeDetails = ({
     const [userProfile, setUserProfile] = useState({});
 
     useEffect(() => {
+        let mounted = true;
+
         getRecipe(match.params.id)
             .then(res => {
-                setRecipe(res);
-                setIsLoading(false);
+                if (mounted) {
+                    setRecipe(res);
+                    setIsLoading(false);
+                }
             })
             .catch(error => console.log(error));
 
         if (recipe.ownerId) {
             getUserProfile(recipe.ownerId)
                 .then(res => {
-                    setUserProfile(res);
+                    if (mounted) {
+                        setUserProfile(res);
+                    }
                 })
                 .catch(error => console.log(error));
+        }
+
+        return () => {
+            mounted = false;
         }
     }, [match, recipe.ownerId]);
 

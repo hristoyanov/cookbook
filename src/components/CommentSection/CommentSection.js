@@ -1,6 +1,7 @@
 import { useState, useEffect, createRef } from 'react';
 
 import Comment from '../Comment/Comment';
+import ConfirmDialog from '../common/ConfirmDialog/ConfirmDialog';
 import { getRecipe, addRecipeComment, modifyRecipeComment } from '../../services/services';
 
 import './CommentSection.css';
@@ -13,7 +14,9 @@ const CommentSection = ({
 }) => {
     const [recipeComments, setRecipeComments] = useState(recipe.comments);
     const [commentToEdit, setCommentToEdit] = useState({});
+    const [commentToDelete, setCommentToDelete] = useState({});
     const [commentCounter, setCommentCounter] = useState(0);
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
     useEffect(() => {
         setTimeout(() => {
@@ -52,18 +55,35 @@ const CommentSection = ({
         commentTextAreaRef.current.value = oldComment.content;
     }
 
+    const deleteCommentHandler = () => {
+        modifyRecipeComment(recipeId, user, null, commentToDelete)
+            .then(() => {
+                commentTextAreaRef.current.value = '';
+
+                setCommentCounter(commentCounter + 1);
+            })
+            .catch(error => console.log(error))
+            .finally(() => {
+                setShowDeleteDialog(false);
+            });
+    }
+
     const deleteCommentClickHandler = (commentId) => {
-        if (window.confirm('Delete comment?')) {
-            const comment = recipeComments.find(x => x.id === commentId);
+        const comment = recipeComments.find(x => x.id === commentId);
 
-            modifyRecipeComment(recipeId, user, null, comment)
-                .then(() => {
-                    commentTextAreaRef.current.value = '';
+        setCommentToDelete(comment);
+        setShowDeleteDialog(true);
+        // if (window.confirm('Delete comment?')) {
+        //     const comment = recipeComments.find(x => x.id === commentId);
 
-                    setCommentCounter(commentCounter + 1);
-                })
-                .catch(error => console.log(error));
-        }
+        //     modifyRecipeComment(recipeId, user, null, comment)
+        //         .then(() => {
+        //             commentTextAreaRef.current.value = '';
+
+        //             setCommentCounter(commentCounter + 1);
+        //         })
+        //         .catch(error => console.log(error));
+        // }
     }
 
     return (
@@ -75,6 +95,7 @@ const CommentSection = ({
                 </div>
                 : null}
             <div className="comment-section-comments">
+                <ConfirmDialog show={showDeleteDialog} onClose={() => setShowDeleteDialog(false)} onSave={deleteCommentHandler} title="Delete this comment?" />
                 <h2 className="comment-section-comments-heading">
                     Comments
                 </h2>
