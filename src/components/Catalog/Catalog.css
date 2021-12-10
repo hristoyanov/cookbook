@@ -19,8 +19,6 @@
 .sort-section {
     display: flex;
     justify-content: space-evenly;
-    width: 75%;
-    margin: 0 auto;
 }
 
 .sort-btn {
@@ -32,7 +30,7 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
-    flex-basis: 25%;
+    flex-basis: 20%;
 }
 
 .active-btn {

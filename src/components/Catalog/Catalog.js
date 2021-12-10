@@ -9,12 +9,14 @@ import './Catalog.css';
 
 const Catalog = () => {
     const [recipes, setRecipes] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [sortedBy, setSortedBy] = useState('Latest');
 
     useEffect(() => {
         getLatestRecipes()
             .then(res => {
-                setRecipes(res)
+                setRecipes(res);
+                setLoading(false);
             });
     }, []);
 
@@ -27,10 +29,13 @@ const Catalog = () => {
     }
 
     return (
+        !loading
+        ?
         <section className="catalog">
             <div className="sort-section">
                 <button className={sortedBy === 'Latest' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Latest')}>Latest</button>
                 <button className={sortedBy === 'Most liked' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Most liked')}>Most liked</button>
+                <button className={sortedBy === 'Most commented' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Most commented')}>Most commented</button>
                 <button className={sortedBy === 'Quickest' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Quickest')}>Quickest</button>
             </div>
             <div className="catalog-recipes">
@@ -44,6 +49,7 @@ const Catalog = () => {
                 </ul>
             </div>
         </section>
+        : null
     );
 }
 
