@@ -1,4 +1,5 @@
-.confirm-dialog-wrapper {
+.confirm-dialog-wrapper,
+.alert-window-wrapper {
     position: fixed;
     display: block;
     top: 0;
@@ -13,7 +14,8 @@
     display: none;
 }
 
-.confirm-dialog {
+.confirm-dialog,
+.alert-window {
     position: fixed;
     background: white;
     width: 500px;
@@ -25,22 +27,26 @@
     z-index: 2;
 }
 
-.confirm-dialog-header {
+.confirm-dialog-header,
+.alert-window-header {
     padding: 25px;
 }
 
-.confirm-dialog-header-title {
+.confirm-dialog-header-title,
+.alert-window-header-title {
     font-size: 32px;
 }
 
-.confirm-dialog-footer {
+.confirm-dialog-footer,
+.alert-window-footer {
     padding: 25px;
     display: flex;
     justify-content: center;
 }
 
 .confirm-dialog-footer-cancel-btn,
-.confirm-dialog-footer-confirm-btn {
+.confirm-dialog-footer-confirm-btn,
+.alert-window-footer-ok-btn {
     border: none;
     padding: 10px 20px;
     border-radius: 5px;

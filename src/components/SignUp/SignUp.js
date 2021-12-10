@@ -1,9 +1,13 @@
-import { auth, createUserWithEmailAndPassword, updateProfile } from '../../firebase';
+import { useState } from 'react';
 
+import AlertWindow from '../common/AlertWindow/AlertWindow';
+import { auth, createUserWithEmailAndPassword, updateProfile } from '../../firebase';
 import { createUserProfile } from '../../services/services';
 
 
 const SignUp = ({ history }) => {
+    const [showAlertWindow, setShowAlertWindow] = useState(false);
+
     const onSignUpSubmitHandler = (e) => {
         e.preventDefault();
 
@@ -13,7 +17,9 @@ const SignUp = ({ history }) => {
         const passwordRepeat = e.target.passwordRepeat.value.trim();
 
         if (password !== passwordRepeat) {
-            return alert('Passwords don\'t match!');
+            setShowAlertWindow(true);
+
+            return;
         }
 
         createUserWithEmailAndPassword(auth, email, password)
@@ -50,6 +56,7 @@ const SignUp = ({ history }) => {
                 <input type="password" name="passwordRepeat" id="repeat-password" required />
                 <button className="submit-btn">Sign Up</button>
             </form>
+            <AlertWindow show={showAlertWindow} onClose={() => setShowAlertWindow(false)} title="Passwords don't match!" />
         </section>
     );
 }

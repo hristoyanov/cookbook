@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import AlertWindow from '../common/AlertWindow/AlertWindow';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { getRecipe, addRecipe, editRecipe } from '../../services/services';
 
@@ -15,6 +16,9 @@ const RecipeForm = ({
 
     const [recipe, setRecipe] = useState({});
     const [loaded, setIsLoaded] = useState(false);
+    const [showAlertWindow, setShowAlertWindow] = useState(false);
+    const [alertWindowMessage, setAlertWindowMessage] = useState('');
+    const [recipeId, setRecipeId] = useState('');
 
     useEffect(() => {
         if (mode === 'Edit') {
@@ -26,6 +30,10 @@ const RecipeForm = ({
                 .catch(error => console.log(error));
         }
     }, [match]);
+
+    const onAlertWindowClose = () => {
+        history.push(`/recipes/${recipeId}/details`);
+    }
 
     async function onSubmitHandler(e) {
         e.preventDefault();
@@ -51,11 +59,11 @@ const RecipeForm = ({
                     ownerId
                 );
 
-                alert('Recipe added successfully!');
+                setRecipeId(res.id);
+                setAlertWindowMessage('Recipe added!');
+                setShowAlertWindow(true);
 
                 e.target.reset();
-
-                history.push(`/recipes/${res.id}/details`);
             } catch (error) {
                 console.log(error);
             }
@@ -70,11 +78,11 @@ const RecipeForm = ({
                     hidden: hidden
                 }, match.params.id);
 
-                alert('Recipe edited successfully!');
+                setRecipeId(match.params.id);
+                setAlertWindowMessage('Recipe edited successfully!');
+                setShowAlertWindow(true);
 
                 e.target.reset();
-
-                history.push(`/recipes/${match.params.id}/details`);
             } catch (error) {
                 console.log(error);
             }
@@ -110,6 +118,10 @@ const RecipeForm = ({
                     </select>
                     <button className="submit-btn">Submit</button>
                 </form>
+                <AlertWindow show={showAlertWindow} onClose={() => {
+                    setShowAlertWindow(false);
+                    onAlertWindowClose();
+                }} title={alertWindowMessage} />
             </section>
     );
 }
