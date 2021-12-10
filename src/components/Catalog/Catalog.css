@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.catalog-recipes-heading {
+    margin: 15px 0;
+}
+
 .recipes-list,
 .user-recipes-list {
     display: flex;
@@ -13,16 +17,10 @@
 }
 
 .sort-section {
-    position: absolute;
-    top: -35px;
-    right: 15px;
-    border: 3px solid orange;
-    border-radius: 5px;
-    padding: 5px 15px;
-}
-
-.sort-section-text {
-    margin: 5px 0;
+    display: flex;
+    justify-content: space-evenly;
+    width: 75%;
+    margin: 0 auto;
 }
 
 .sort-btn {
@@ -34,4 +32,9 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+    flex-basis: 25%;
+}
+
+.active-btn {
+    background: green;
 }

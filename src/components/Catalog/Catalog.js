@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 
 import { getLatestRecipes } from '../../services/services';
 import RecipeCard from '../../components/RecipeCard/RecipeCard';
+import recipeSort from '../../utils/recipeSort';
 
 import './Catalog.css';
 
 
 const Catalog = () => {
     const [recipes, setRecipes] = useState([]);
-    const [mode, setMode] = useState('latest');
+    const [sortedBy, setSortedBy] = useState('Latest');
 
     useEffect(() => {
         getLatestRecipes()
@@ -17,32 +18,31 @@ const Catalog = () => {
             });
     }, []);
 
-    const sortRecipes = () => {
-        if (mode === 'latest') {
-            setRecipes([...recipes].sort((a, b) => b.likes.length - a.likes.length));
-            setMode('most liked');
-        } else {
-            setRecipes([...recipes].sort((a, b) => b.createdAt - a.createdAt));
-            setMode('latest');
-        }
+    const onSortButtonClick = (sortBy) => {
+        const sorter = recipeSort(recipes);
+        const sortedRecipes = sorter[sortBy]();
+
+        setRecipes([...sortedRecipes]);
+        setSortedBy(sortBy);
     }
 
     return (
         <section className="catalog">
             <div className="sort-section">
-                <p className="sort-section-text">
-                    Sort by:
-                </p>
-                <button className="sort-btn" onClick={sortRecipes}>{mode === 'latest' ? 'Most liked' : 'Latest'}</button>
+                <button className={sortedBy === 'Latest' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Latest')}>Latest</button>
+                <button className={sortedBy === 'Most liked' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Most liked')}>Most liked</button>
+                <button className={sortedBy === 'Quickest' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Quickest')}>Quickest</button>
             </div>
-            <h1 className="catalog-heading">
-                {mode === 'latest' ? 'Latest recipes' : 'Most liked recipes'}
-            </h1>
-            <ul className="recipes-list">
-                {recipes.map(x =>
-                    <RecipeCard key={x.id} {...x} />
-                )}
-            </ul>
+            <div className="catalog-recipes">
+                <h1 className="catalog-recipes-heading">
+                    {sortedBy + ' recipes'}
+                </h1>
+                <ul className="recipes-list">
+                    {recipes.map(x =>
+                        <RecipeCard key={x.id} {...x} />
+                    )}
+                </ul>
+            </div>
         </section>
     );
 }
