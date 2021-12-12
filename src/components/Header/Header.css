@@ -41,6 +41,10 @@
     border-bottom: 5px solid black;
 }
 
+.user-info-list-item {
+    text-decoration: underline;
+}
+
 .user-info {
     font-weight: bold;
 }

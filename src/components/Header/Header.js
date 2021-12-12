@@ -1,6 +1,8 @@
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import {useAuthContext} from '../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { getUserProfile } from '../../services/services';
 import UserNavigation from './UserNavigation/UserNavigation';
 import GuestNavigation from './GuestNavigation/GuestNavigation';
 
@@ -8,8 +10,20 @@ import './Header.css';
 
 
 const Header = () => {
+    const [userProfile, setUserProfile] = useState({});
+
     const user = useAuthContext();
     const location = useLocation();
+
+    useEffect(() => {
+        if (user && user.uid) {
+            getUserProfile(user.uid)
+                .then(res => {
+                    setUserProfile(res);
+                })
+                .catch(error => console.log(error));
+        }
+    }, [user]);
 
     return (
         location.pathname === "/"
@@ -23,7 +37,7 @@ const Header = () => {
                     <div className="page-header-nav-links">
                         <ul className="page-header-nav-links-list">
                             {user && user.email
-                                ? <UserNavigation user={user} />
+                                ? <UserNavigation userProfile={userProfile} />
                                 : <GuestNavigation />
                             }
                         </ul>

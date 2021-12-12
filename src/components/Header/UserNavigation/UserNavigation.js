@@ -2,20 +2,20 @@ import { Link, NavLink } from 'react-router-dom';
 
 
 const UserNavigation = ({
-    user
+    userProfile
 }) => {
     return (
-        user && user.email
+        userProfile.displayName
             ?
             <>
-                <li>
-                    Signed in as <span className="user-info">{user.email}</span>
+                <li className="user-info-list-item">
+                    Signed in as <span className="user-info">{userProfile.displayName}</span>
                 </li>
                 <li>
-                    <NavLink to={`/users/${user.uid}/recipes`} exact activeClassName="active">My Recipes</NavLink>
+                    <NavLink to={`/users/${userProfile.userUID}/recipes`} exact activeClassName="active">My Recipes</NavLink>
                 </li>
                 <li>
-                    <NavLink to={`/users/${user.uid}/recipes/liked`} exact activeClassName="active">Liked Recipes</NavLink>
+                    <NavLink to={`/users/${userProfile.userUID}/recipes/liked`} exact activeClassName="active">Liked Recipes</NavLink>
                 </li>
                 <li>
                     <NavLink to="/recipes/add" exact activeClassName="active">Add Recipe</NavLink>

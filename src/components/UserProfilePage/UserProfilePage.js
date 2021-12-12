@@ -21,7 +21,8 @@ const UserProfilePage = ({ match }) => {
         getUserProfile(match.params.id)
             .then(res => {
                 setUserProfile(res);
-            });
+            })
+            .catch(error => console.log(error));
 
         if (user && user.uid === match.params.id) {
             getUserRecipes(match.params.id)
