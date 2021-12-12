@@ -43,7 +43,7 @@ const CommentSection = ({
 
         commentTextAreaRef.current.value = '';
 
-        setCommentCounter(commentCounter + 1);
+        setCommentCounter(state => state + 1);
     }
 
     const editCommentClickHandler = (commentId) => {
@@ -60,7 +60,7 @@ const CommentSection = ({
             .then(() => {
                 commentTextAreaRef.current.value = '';
 
-                setCommentCounter(commentCounter + 1);
+                setCommentCounter(state => state + 1);
             })
             .catch(error => console.log(error))
             .finally(() => {
@@ -73,17 +73,6 @@ const CommentSection = ({
 
         setCommentToDelete(comment);
         setShowDeleteDialog(true);
-        // if (window.confirm('Delete comment?')) {
-        //     const comment = recipeComments.find(x => x.id === commentId);
-
-        //     modifyRecipeComment(recipeId, user, null, comment)
-        //         .then(() => {
-        //             commentTextAreaRef.current.value = '';
-
-        //             setCommentCounter(commentCounter + 1);
-        //         })
-        //         .catch(error => console.log(error));
-        // }
     }
 
     return (

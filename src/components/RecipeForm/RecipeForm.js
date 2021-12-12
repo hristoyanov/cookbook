@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import AlertWindow from '../common/AlertWindow/AlertWindow';
+import isAuth from '../../hoc/isAuth';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { getRecipe, addRecipe, editRecipe } from '../../services/services';
 
@@ -126,4 +127,4 @@ const RecipeForm = ({
     );
 }
 
-export default RecipeForm;
+export default isAuth(RecipeForm);

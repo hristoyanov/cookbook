@@ -23,13 +23,13 @@ const UserProfilePage = ({ match }) => {
         if (user && user.uid === match.params.id) {
             getUserRecipes(match.params.id)
                 .then(res => {
-                    setRecipes(res)
+                    setRecipes(res);
                 })
                 .catch(error => console.log(error));
         } else {
             getUserRecipes(match.params.id, true)
                 .then(res => {
-                    setRecipes(res)
+                    setRecipes(res);
                 })
                 .catch(error => console.log(error));
         }

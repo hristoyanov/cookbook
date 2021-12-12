@@ -29,8 +29,8 @@ function App() {
                         <Route path="/" exact component={LandingPage} />
                         <Route path="/recipes" exact component={Catalog} />
                         <Route path="/recipes/:id/details" exact component={RecipeDetails} />
-                        <Route path="/recipes/add" render={props => sessionStorage.getItem('user') ? <RecipeForm {...props} mode={'Add'} /> : <Redirect to="/sign-in" />} />
-                        <Route path="/recipes/:id/edit" render={props => sessionStorage.getItem('user') ? <RecipeForm {...props} mode={'Edit'} /> : <Redirect to="/sign-in" />} />
+                        <Route path="/recipes/add" render={props => <RecipeForm {...props} mode={'Add'} />} />
+                        <Route path="/recipes/:id/edit" render={props => <RecipeForm {...props} mode={'Edit'} />} />
                         <Route path="/sign-up" component={SignUp} />
                         <Route path="/sign-in" component={SignIn} />
                         <Route path="/sign-out" render={() => {

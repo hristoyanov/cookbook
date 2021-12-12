@@ -19,7 +19,7 @@ const LikedRecipesPage = ({ match }) => {
 
         getUserLikedRecipes(match.params.id)
             .then(res => {
-                setRecipes(res)
+                setRecipes(res);
             })
             .catch(error => console.log(error));
     }, [match]);
