@@ -29,7 +29,7 @@ const SignIn = ({ history }) => {
             <form onSubmit={onSignInSubmitHandler}>
                 <legend>Sign In</legend>
                 <label htmlFor="email">Email</label>
-                <input type="text" name="email" id="email" required />
+                <input type="email" name="email" id="email" required />
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" required />
                 <button className="submit-btn">Sign In</button>

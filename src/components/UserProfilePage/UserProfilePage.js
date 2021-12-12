@@ -33,7 +33,7 @@ const UserProfilePage = ({ match }) => {
                 })
                 .catch(error => console.log(error));
         }
-    }, [match]);
+    }, [match.params.id]);
 
     return (
         userProfile.displayName
@@ -52,7 +52,7 @@ const UserProfilePage = ({ match }) => {
                     :
                     <h3>No recipes yet.</h3>}
                 {user.uid !== userProfile.userUID
-                    ? <Link to={`/users/${userProfile.userUID}/recipes/liked`} className='user-liked-recipes-link'>Liked</Link>
+                    ? <Link to={`/users/${userProfile.userUID}/recipes/liked`} className='user-liked-recipes-link'>View their liked recipes</Link>
                     : null
                 }
             </section>

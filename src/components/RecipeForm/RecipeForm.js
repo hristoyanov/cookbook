@@ -30,7 +30,7 @@ const RecipeForm = ({
                 })
                 .catch(error => console.log(error));
         }
-    }, [match]);
+    }, [match.params.id, mode]);
 
     const onAlertWindowClose = () => {
         history.push(`/recipes/${recipeId}/details`);

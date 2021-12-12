@@ -47,7 +47,7 @@ const SignUp = ({ history }) => {
             <form onSubmit={onSignUpSubmitHandler}>
                 <legend>Sign Up</legend>
                 <label htmlFor="email">Email</label>
-                <input type="text" name="email" id="email" required />
+                <input type="email" name="email" id="email" required />
                 <label htmlFor="display-name">Display Name/Username</label>
                 <input type="text" name="displayName" id="display-name" required />
                 <label htmlFor="password">Password</label>
