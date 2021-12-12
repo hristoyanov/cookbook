@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { useAuthContext } from '../../contexts/AuthContext';
-import { getRecipe, updateRecipeLikes } from '../../services/services';
+import { useAuthContext } from '../../../contexts/AuthContext';
+import { getRecipe, updateRecipeLikes } from '../../../services/services';
 
 
 const RecipeLikes = ({

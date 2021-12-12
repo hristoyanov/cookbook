@@ -3,9 +3,9 @@ import { withRouter, Link } from 'react-router-dom';
 
 import { useAuthContext } from '../../contexts/AuthContext';
 import { getUserProfile, getRecipe } from '../../services/services';
-import RecipeOwnerControl from '../RecipeOwnerControl/RecipeOwnerControl';
-import RecipeLikes from '../RecipeLikes/RecipeLikes';
-import CommentSection from '../CommentSection/CommentSection';
+import RecipeOwnerControl from './RecipeOwnerControl/RecipeOwnerControl';
+import RecipeLikes from './RecipeLikes/RecipeLikes';
+import CommentSection from './CommentSection/CommentSection';
 
 import './RecipeDetails.css';
 

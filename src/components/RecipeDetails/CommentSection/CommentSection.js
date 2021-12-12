@@ -1,8 +1,8 @@
 import { useState, useEffect, createRef } from 'react';
 
-import Comment from '../Comment/Comment';
-import ConfirmDialog from '../common/ConfirmDialog/ConfirmDialog';
-import { getRecipe, addRecipeComment, modifyRecipeComment } from '../../services/services';
+import Comment from './Comment/Comment';
+import ConfirmDialog from '../../common/ConfirmDialog/ConfirmDialog';
+import { getRecipe, addRecipeComment, modifyRecipeComment } from '../../../services/services';
 
 import './CommentSection.css';
 

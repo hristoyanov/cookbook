@@ -4,8 +4,8 @@ import { auth, signOut } from './firebase';
 import { AuthProvider } from './contexts/AuthContext';
 import isAuth from './hoc/isAuth';
 
-import CustomErrorBoundary from './components/CustomErrorBoundary/CustomErrorBoundary';
-import PageNotFound from './components/PageNotFound/PageNotFound';
+import CustomErrorBoundary from './components/common/CustomErrorBoundary/CustomErrorBoundary';
+import PageNotFound from './components/common/PageNotFound/PageNotFound';
 import Header from './components/Header/Header';
 import SignUp from './components/SignUp/SignUp';
 import SignIn from './components/SignIn/SignIn';

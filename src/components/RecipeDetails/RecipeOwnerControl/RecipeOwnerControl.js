@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useAuthContext } from '../../contexts/AuthContext';
-import ConfirmDialog from '../common/ConfirmDialog/ConfirmDialog';
-import { deleteRecipe } from '../../services/services';
+import { useAuthContext } from '../../../contexts/AuthContext';
+import ConfirmDialog from '../../common/ConfirmDialog/ConfirmDialog';
+import { deleteRecipe } from '../../../services/services';
 
 import './RecipeOwnerControl.css';
 
