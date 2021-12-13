@@ -58,7 +58,7 @@ const UserProfilePage = ({ match }) => {
         userProfile.displayName
             ?
             <section className="user-recipes">
-                {user && user.uid === match.params.id
+                {user && user.uid === match.params.id && filteredRecipes.length > 0
                     ?
                     <div className="filter-section">
                         <button className={filteredBy === 'all' ? 'filter-btn active-btn' : 'filter-btn'} onClick={() => onFilterButtonClick('all')}>All recipes</button>

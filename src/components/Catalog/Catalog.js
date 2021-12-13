@@ -30,26 +30,31 @@ const Catalog = () => {
 
     return (
         !loading
-        ?
-        <section className="catalog">
-            <div className="sort-section">
-                <button className={sortedBy === 'Latest' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Latest')}>Latest</button>
-                <button className={sortedBy === 'Most liked' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Most liked')}>Most liked</button>
-                <button className={sortedBy === 'Most commented' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Most commented')}>Most commented</button>
-                <button className={sortedBy === 'Quickest' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Quickest')}>Quickest</button>
-            </div>
-            <div className="catalog-recipes">
-                <h1 className="catalog-recipes-heading">
-                    {sortedBy + ' recipes'}
-                </h1>
-                <ul className="recipes-list">
-                    {recipes.map(x =>
-                        <RecipeCard key={x.id} {...x} />
-                    )}
-                </ul>
-            </div>
-        </section>
-        : null
+            ?
+            <section className="catalog">
+                {recipes.length > 0
+                    ?
+                    <>
+                        <div className="sort-section">
+                            <button className={sortedBy === 'Latest' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Latest')}>Latest</button>
+                            <button className={sortedBy === 'Most liked' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Most liked')}>Most liked</button>
+                            <button className={sortedBy === 'Most commented' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Most commented')}>Most commented</button>
+                            <button className={sortedBy === 'Quickest' ? 'sort-btn active-btn' : 'sort-btn'} onClick={() => onSortButtonClick('Quickest')}>Quickest</button>
+                        </div>
+                        <div className="catalog-recipes">
+                            <h1 className="catalog-recipes-heading">
+                                {sortedBy + ' recipes'}
+                            </h1>
+                            <ul className="recipes-list">
+                                {recipes.map(x =>
+                                    <RecipeCard key={x.id} {...x} />
+                                )}
+                            </ul>
+                        </div>
+                    </>
+                    : <h1>No recipes yet.</h1>}
+            </section>
+            : null
     );
 }
 
