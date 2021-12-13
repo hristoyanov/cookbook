@@ -4,7 +4,7 @@ import AlertWindow from '../common/AlertWindow/AlertWindow';
 import isAuth from '../../hoc/isAuth';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { getRecipe, addRecipe, editRecipe } from '../../services/services';
-import * as validators from './recipeValidators';
+import * as validators from './recipeFormValidators';
 
 import './RecipeForm.css';
 
@@ -145,16 +145,16 @@ const RecipeForm = ({
                 <form className="recipe-form" onSubmit={onSubmitHandler}>
                     <legend>{mode + ' recipe'}</legend>
                     <label htmlFor="recipe-name">Recipe Name</label>
-                    <input type="text" name="name" id="recipe-name" defaultValue={loaded ? recipe.name : ''}/>
+                    <input type="text" name="name" id="recipe-name" defaultValue={loaded ? recipe.name : ''} />
                     <span className={errors.name ? 'error visible' : 'error'}>{errors.name}</span>
                     <label htmlFor="image-url">Image</label>
-                    <input type="text" name="imageURL" id="image-url" placeholder="Please provide image source." defaultValue={loaded ? recipe.imageURL : ''}/>
+                    <input type="text" name="imageURL" id="image-url" placeholder="Please provide image source." defaultValue={loaded ? recipe.imageURL : ''} />
                     <span className={errors.imageURL ? 'error visible' : 'error'}>{errors.imageURL}</span>
                     <label htmlFor="ingredients">Ingredients</label>
                     <textarea name="ingredients" id="ingredients" cols="30" rows="7" placeholder="Please add ingredients separated by comma." defaultValue={loaded ? recipe.ingredients.join(', ') : ''}></textarea>
                     <span className={errors.ingredients ? 'error visible' : 'error'}>{errors.ingredients}</span>
                     <label htmlFor="prep-time">Preparation time (in minutes)</label>
-                    <input type="number" name="prepTime" id="prep-time" min="5" defaultValue={loaded ? recipe.prepTime : ''}/>
+                    <input type="number" name="prepTime" id="prep-time" min="5" defaultValue={loaded ? recipe.prepTime : ''} />
                     <span className={errors.prepTime ? 'error visible' : 'error'}>{errors.prepTime}</span>
                     <label htmlFor="preparation">Preparation</label>
                     <textarea name="preparation" id="preparation" cols="30" rows="7" defaultValue={loaded ? recipe.preparation : ''} placeholder="Instructions as to how to prepare the recipe."></textarea>
