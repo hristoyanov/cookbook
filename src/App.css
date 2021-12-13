@@ -105,3 +105,13 @@ form select {
     font-size: 16px;
     cursor: pointer;
 }
+
+.error {
+    display: none;
+}
+
+.error.visible {
+    display: inline;
+    font-weight: bold;
+    color: red;
+}
