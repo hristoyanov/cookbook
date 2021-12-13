@@ -1,7 +1,11 @@
+import { useState } from 'react';
+
 import { auth, signInWithEmailAndPassword } from '../../firebase';
 
 
 const SignIn = ({ history }) => {
+    const [errors, setErrors] = useState({ password: false });
+
     const onSignInSubmitHandler = (e) => {
         e.preventDefault();
 
@@ -11,16 +15,17 @@ const SignIn = ({ history }) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                
+
                 console.log('Signed in as ' + user.email);
 
                 history.push('/recipes');
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                if (error.code === 'auth/wrong-password') {
+                    setErrors(state => ({ ...state, password: 'Wrong password.' }));
+                }
 
-                console.log(errorCode, errorMessage);
+                console.log(error.code, error.message);
             });
     }
 
@@ -32,6 +37,7 @@ const SignIn = ({ history }) => {
                 <input type="email" name="email" id="email" required />
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" required />
+                <span className={errors.password ? 'error visible' : 'error'}>{errors.password}</span>
                 <button className="submit-btn">Sign In</button>
             </form>
         </section>
