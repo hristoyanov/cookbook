@@ -31,7 +31,7 @@ const SignIn = ({ history }) => {
 
     return (
         <section className="sign-in">
-            <form onSubmit={onSignInSubmitHandler}>
+            <form className="sign-in-form" onSubmit={onSignInSubmitHandler}>
                 <legend>Sign In</legend>
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" id="email" required />

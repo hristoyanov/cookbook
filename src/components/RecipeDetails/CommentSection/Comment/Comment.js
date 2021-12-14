@@ -15,7 +15,7 @@ const Comment = ({
     return (
         <article className="comment">
             <p className="comment-date">
-                Posted on: {createdAt.toDate().toLocaleDateString()}
+                Posted on: {createdAt.toDate().toLocaleDateString()} {createdAt.toDate().getHours()}:{createdAt.toDate().getMinutes()}:{createdAt.toDate().getSeconds()}
             </p>
             <p className="comment-content">
                 {content}

@@ -115,3 +115,136 @@ form select {
     font-weight: bold;
     color: red;
 }
+
+@media screen and (max-width: 800px) {
+    .landing-page-header {
+        padding: 15px;
+    }
+
+    .landing-page-header-text {
+        line-height: 35px;
+    }
+
+    .landing-page-actions {
+        margin-top: 25px;
+        flex-direction: column;
+    }
+
+    .landing-page-actions-view-recipes,
+    .landing-page-actions-sign-up-cta,
+    .landing-page-actions-sign-in-cta {
+        margin: 10px 15px;
+    }
+
+    .container {
+        padding-bottom: 25px;
+    }
+
+    .page-header {
+        margin-bottom: 25px;
+    }
+
+    .page-header-nav {
+        flex-direction: column;
+    }
+
+    .page-header-nav-links-list {
+        flex-direction: column;
+    }
+
+    .page-header-nav-links-list li {
+        margin: 5px 0;
+    }
+
+    .page-header-nav-links-list li a.active {
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .recipes-list,
+    .user-recipes-list {
+        flex-direction: column;
+    }
+
+    .recipes-list-item {
+        margin: 10px 15px;
+    }
+
+    .recipes-list-item-img img,
+    .recipe-details-content-img img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .sign-up-from,
+    .sign-in-form,
+    .recipe-form {
+        width: auto;
+        margin: 0 15px;
+    }
+
+    input#recipe-name {
+        width: 100%;
+    }
+
+    select#visibility {
+        width: 30%;
+    }
+
+    .recipe-details-recipe-card {
+        margin: 0 15px;
+    }
+
+    .recipe-details-content {
+        flex-direction: column;
+        padding: 0;
+        max-height: none;
+    }
+
+    .recipe-details-content-ingredients,
+    .recipe-details-content-preparation {
+        margin: 10px 15px;
+    }
+
+    .recipe-details-buttons-container {
+        position: initial;
+        margin-top: 10px;
+        padding: 0 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .recipe-details-buttons-container .edit-btn {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .comment-section {
+        margin: 25px 15px;
+        padding: 25px 0;
+    }
+
+    .comment-section-add-comment {
+        width: 90%;
+    }
+
+    .add-comment-btn {
+        width: 100%;
+    }
+
+    .comment {
+        width: 90%;
+    }
+
+    .comment-owner-control {
+        position: initial;
+        margin-top: 10px;
+        display: flex;
+        align-content: center;
+    }
+
+    .comment-owner-control-edit-btn,
+    .comment-owner-control-delete-btn {
+        flex-basis: 45%;
+    }
+}
