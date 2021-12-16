@@ -117,6 +117,10 @@ form select {
 }
 
 @media screen and (max-width: 800px) {
+    input, select, textarea {
+        font-size: 16px;
+    }
+
     .landing-page-header {
         padding: 15px;
     }
