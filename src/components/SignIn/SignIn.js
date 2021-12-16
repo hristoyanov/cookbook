@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import { auth, signInWithEmailAndPassword } from '../../firebase';
-
 
 const SignIn = ({ history }) => {
     const [errors, setErrors] = useState({ password: false });
@@ -30,17 +30,20 @@ const SignIn = ({ history }) => {
     }
 
     return (
-        <section className="sign-in">
-            <form className="sign-in-form" onSubmit={onSignInSubmitHandler}>
-                <legend>Sign In</legend>
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" id="email" required />
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" required />
-                <span className={errors.password ? 'error visible' : 'error'}>{errors.password}</span>
-                <button className="submit-btn">Sign In</button>
-            </form>
-        </section>
+        sessionStorage.getItem('user')
+            ? <Redirect to="/recipes" />
+            :
+            <section className="sign-in">
+                <form className="sign-in-form" onSubmit={onSignInSubmitHandler}>
+                    <legend>Sign In</legend>
+                    <label htmlFor="email">Email</label>
+                    <input type="email" name="email" id="email" required />
+                    <label htmlFor="password">Password</label>
+                    <input type="password" name="password" id="password" required />
+                    <span className={errors.password ? 'error visible' : 'error'}>{errors.password}</span>
+                    <button className="submit-btn">Sign In</button>
+                </form>
+            </section>
     );
 }
 

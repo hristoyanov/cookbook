@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import AlertWindow from '../common/AlertWindow/AlertWindow';
 import { auth, createUserWithEmailAndPassword, updateProfile } from '../../firebase';
@@ -58,23 +59,26 @@ const SignUp = ({ history }) => {
     }
 
     return (
-        <section className="sign-up">
-            <form className="sign-up-from" onSubmit={onSignUpSubmitHandler}>
-                <legend>Sign Up</legend>
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" id="email" required />
-                <label htmlFor="display-name">Display Name/Username</label>
-                <input type="text" name="displayName" id="display-name" />
-                <span className={errors.displayName ? 'error visible' : 'error'}>{errors.displayName}</span>
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" />
-                <span className={errors.password ? 'error visible' : 'error'}>{errors.password}</span>
-                <label htmlFor="repeat-password">Repeat Password</label>
-                <input type="password" name="passwordRepeat" id="repeat-password" required />
-                <button className="submit-btn">Sign Up</button>
-            </form>
-            <AlertWindow show={showAlertWindow} onClose={() => setShowAlertWindow(false)} title="Passwords don't match!" />
-        </section>
+        sessionStorage.getItem('user')
+            ? <Redirect to="/recipes" />
+            :
+            <section className="sign-up">
+                <form className="sign-up-from" onSubmit={onSignUpSubmitHandler}>
+                    <legend>Sign Up</legend>
+                    <label htmlFor="email">Email</label>
+                    <input type="email" name="email" id="email" required />
+                    <label htmlFor="display-name">Display Name/Username</label>
+                    <input type="text" name="displayName" id="display-name" />
+                    <span className={errors.displayName ? 'error visible' : 'error'}>{errors.displayName}</span>
+                    <label htmlFor="password">Password</label>
+                    <input type="password" name="password" id="password" />
+                    <span className={errors.password ? 'error visible' : 'error'}>{errors.password}</span>
+                    <label htmlFor="repeat-password">Repeat Password</label>
+                    <input type="password" name="passwordRepeat" id="repeat-password" required />
+                    <button className="submit-btn">Sign Up</button>
+                </form>
+                <AlertWindow show={showAlertWindow} onClose={() => setShowAlertWindow(false)} title="Passwords don't match!" />
+            </section>
     );
 }
 
