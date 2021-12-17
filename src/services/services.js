@@ -60,9 +60,9 @@ async function getUserRecipes(userId, publicOnly = false) {
         let q = undefined;
 
         if (publicOnly) {
-            q = query(recipesRef, where('ownerId', '==', userId), where('hidden', '==', false));
+            q = query(recipesRef, where('ownerId', '==', userId), where('hidden', '==', false), orderBy('createdAt', 'desc'));
         } else {
-            q = query(recipesRef, where('ownerId', '==', userId));
+            q = query(recipesRef, where('ownerId', '==', userId), orderBy('createdAt', 'desc'));
         }
         const recipes = await getDocs(q);
 
