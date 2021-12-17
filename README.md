@@ -2,6 +2,8 @@
 
 An application for sharing cooking recipes. Users can view, create and like recipes.
 
+App can be found at <https://cookbook-f1450.web.app>
+
 ## Basic functionality
 
 ### Non-registered users:
