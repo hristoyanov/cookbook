@@ -252,3 +252,11 @@ form select {
         flex-basis: 45%;
     }
 }
+
+@media screen and (min-width: 550px) and (max-width: 800px) {
+    .recipes-list-item-img img,
+    .recipe-details-content-img img {
+        width: 475px;
+        height: 475px;
+    }
+}

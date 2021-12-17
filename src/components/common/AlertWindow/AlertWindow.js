@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import '../common.css';
 
 
-const ConfirmDialog = ({
+const AlertWindow = ({
     show,
     onClose,
     title,
@@ -22,4 +22,4 @@ const ConfirmDialog = ({
     );
 }
 
-export default ConfirmDialog;
+export default AlertWindow;
