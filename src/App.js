@@ -29,11 +29,11 @@ function App() {
                         <Route path="/" exact component={LandingPage} />
                         <Route path="/recipes" exact component={Catalog} />
                         <Route path="/recipes/:id/details" exact component={RecipeDetails} />
-                        <Route path="/recipes/add" render={props => <RecipeForm {...props} mode={'Add'} />} />
-                        <Route path="/recipes/:id/edit" render={props => <RecipeForm {...props} mode={'Edit'} />} />
-                        <Route path="/sign-up" component={SignUp} />
-                        <Route path="/sign-in" component={SignIn} />
-                        <Route path="/sign-out" render={() => {
+                        <Route path="/recipes/add" exact render={props => <RecipeForm {...props} mode={'Add'} />} />
+                        <Route path="/recipes/:id/edit" exact render={props => <RecipeForm {...props} mode={'Edit'} />} />
+                        <Route path="/sign-up" exact component={SignUp} />
+                        <Route path="/sign-in" exact component={SignIn} />
+                        <Route path="/sign-out" exact render={() => {
                             signOut(auth);
 
                             return <Redirect to="/recipes" />
