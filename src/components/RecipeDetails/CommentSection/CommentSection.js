@@ -31,7 +31,11 @@ const CommentSection = ({
     const commentTextAreaRef = createRef();
 
     const commentHandler = () => {
-        const content = commentTextAreaRef.current.value;
+        const content = commentTextAreaRef.current.value.trim();
+
+        if (!content) {
+            return;
+        }
 
         if (!commentToEdit.id) {
             addRecipeComment(recipeId, user.uid, user.displayName, content)
