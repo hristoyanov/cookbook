@@ -1,3 +1,7 @@
+.user-recipes-title {
+    margin: 15px 0;
+}
+
 .user-liked-recipes-link {
     text-decoration: none;
     font-weight: bold;
