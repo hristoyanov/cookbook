@@ -8,6 +8,10 @@
     position: relative;
 }
 
+.comment.own {
+    background: lightgreen;
+}
+
 .comment-owner-control {
     position: absolute;
     top: 8%;
@@ -39,6 +43,7 @@
     border: 1px solid black;
     border-radius: 5px;
     white-space: pre-wrap;
+    background: white;
 }
 
 .comment-author {

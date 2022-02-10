@@ -36,9 +36,8 @@ form label {
     font-weight: bold;
     margin: 10px 0;
 }
-
-form textarea {
-    resize: none;
+textarea {
+    resize: vertical;
     border: none;
     border-radius: 5px;
 }
@@ -244,7 +243,7 @@ form select {
         position: initial;
         margin-top: 10px;
         display: flex;
-        align-content: center;
+        justify-content: center;
     }
 
     .comment-owner-control-edit-btn,
