@@ -13,7 +13,7 @@ const Comment = ({
     id
 }) => {
     return (
-        <article className={user.uid === author.userId ? 'comment own': 'comment'}>
+        <article className={user && user.uid === author.userId ? 'comment own': 'comment'}>
             <p className="comment-date">
                 Posted on: {createdAt.toDate().toLocaleDateString()} {String(createdAt.toDate().getHours()).padStart(2, '0')}:{String(createdAt.toDate().getMinutes()).padStart(2, '0')}:{String(createdAt.toDate().getSeconds()).padStart(2, '0')}
             </p>
