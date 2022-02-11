@@ -26,7 +26,7 @@ The application uses Firebase Authentication - users sign up/sign in using an em
 ## Creating a recipe
 Users need to provide:
 - Recipe name
-- Image URL
+- Image (file upload)
 - List of ingredients
 - Preparation time
 - preparation - description of how to actually prepare the dish
