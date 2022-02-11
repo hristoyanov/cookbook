@@ -14,8 +14,8 @@ import {
     orderBy,
     Timestamp
 } from 'firebase/firestore';
-import { db } from '../firebase';
-
+import { db, storage } from '../firebase';
+import { ref, deleteObject } from 'firebase/storage';
 
 const userProfilesRef = collection(db, 'userProfiles');
 const recipesRef = collection(db, 'recipes');
@@ -180,6 +180,12 @@ async function modifyRecipeComment(recipeId, user, content, oldComment) {
     return res;
 }
 
+async function deleteRecipeImage(url) {
+    const imageRef = ref(storage, url);
+
+    return await deleteObject(imageRef);
+}
+
 export {
     db,
     createUserProfile,
@@ -193,5 +199,6 @@ export {
     deleteRecipe,
     updateRecipeLikes,
     addRecipeComment,
-    modifyRecipeComment
+    modifyRecipeComment,
+    deleteRecipeImage
 };

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useAuthContext } from '../../../contexts/AuthContext';
 import ConfirmDialog from '../../common/ConfirmDialog/ConfirmDialog';
-import { deleteRecipe } from '../../../services/services';
+import { deleteRecipe, deleteRecipeImage } from '../../../services/services';
 
 import './RecipeOwnerControl.css';
 
 
 const RecipeOwnerControl = ({
     id,
+    recipe,
     ownerId,
     history
 }) => {
@@ -17,6 +18,9 @@ const RecipeOwnerControl = ({
 
     const deleteHandler = () => {
         deleteRecipe(id)
+            .then(() => {
+                deleteRecipeImage(recipe.imageURL);
+            })
             .then(() => {
                 history.push(`/users/${user.uid}/recipes`);
             });
