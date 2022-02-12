@@ -115,7 +115,7 @@ form select {
     color: red;
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1024px) {
     input, select, textarea {
         font-size: 16px;
     }
@@ -212,8 +212,8 @@ form select {
     .recipe-details-buttons-container {
         margin-right: 15px;
         flex-direction: row;
-        top: 2%;
-        right: 0%;
+        top: 4%;
+        right: 4%;
     }
 
     .edit-btn {
@@ -265,7 +265,7 @@ form select {
     }
 }
 
-@media screen and (min-width: 550px) and (max-width: 1440px) {
+@media screen and (min-width: 550px) and (max-width: 1024px) {
     .recipes-list-item-img img,
     .recipe-details-content-img img {
         width: 475px;

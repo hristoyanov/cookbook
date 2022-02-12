@@ -56,7 +56,7 @@ const RecipeForm = ({
         const hidden = e.target.visibility.value === 'private' ? true : false;
 
         if (!name) {
-            setErrors(state => ({ ...state, name: 'Name should be at least 3 characters long.' }));
+            setErrors(state => ({ ...state, name: 'Name must be between 3 and 30 characters.' }));
 
             return;
         } else {
@@ -117,8 +117,6 @@ const RecipeForm = ({
                                 setRecipeId(res.id);
                                 setAlertWindowMessage('Recipe added!');
                                 setShowAlertWindow(true);
-
-                                e.target.reset();
                             });
                         });
                 });
@@ -138,8 +136,6 @@ const RecipeForm = ({
                         setRecipeId(match.params.id);
                         setAlertWindowMessage('Recipe edited successfully!');
                         setShowAlertWindow(true);
-
-                        e.target.reset();
                     });
             } catch (error) {
                 console.log(error);

@@ -20,14 +20,14 @@
 
 .comment-owner-control-edit-btn,
 .comment-owner-control-delete-btn {
-    background: orange;
+    background: white;
     margin: 0 5px;
     padding: 5px 10px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
     font-weight: bold;
-    color: white;
+    color: black;
 }
 
 .comment-date {

@@ -4,6 +4,13 @@
     padding: 0 10px;
     border-radius: 10px;
     color: white;
+    flex-basis: 20%;
+}
+
+.recipes-list-item-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .recipes-list-item-img img {

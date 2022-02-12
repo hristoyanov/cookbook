@@ -1,5 +1,5 @@
 export const nameValidator = (name) => {
-    return name.length > 2 && name.length <= 50 ? name : false;
+    return name.length > 2 && name.length <= 30 ? name : false;
 }
 
 export const ingredientsValidator = (array) => {
