@@ -115,7 +115,7 @@ form select {
     color: red;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1440px) {
     input, select, textarea {
         font-size: 16px;
     }
@@ -250,9 +250,24 @@ form select {
     .comment-owner-control-delete-btn {
         flex-basis: 45%;
     }
+
+    .recipe-img-select-label {
+        width: 50%;
+    }
+
+    .recipe-details-content-img-change-label {
+        max-width: 325px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .recipe-details-content-img {
+        max-width: 475px;
+        margin: 0 auto;
+    }
 }
 
-@media screen and (min-width: 550px) and (max-width: 800px) {
+@media screen and (min-width: 550px) and (max-width: 1440px) {
     .recipes-list-item-img img,
     .recipe-details-content-img img {
         width: 475px;

@@ -16,3 +16,24 @@
     width: 10%;
     margin: 0 auto;
 }
+
+.recipe-img-select-label {
+    background: white;
+    color: black;
+    padding: 5px 20px;
+    width: 25%;
+    margin: 25px auto 15px auto;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.recipe-img-select {
+    display: none;
+}
+
+.img-preview img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}

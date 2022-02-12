@@ -24,6 +24,7 @@ const RecipeForm = ({
     const [alertWindowMessage, setAlertWindowMessage] = useState('');
     const [recipeId, setRecipeId] = useState('');
     const [errors, setErrors] = useState({ name: false, image: false, ingredients: false, prepTime: false, preparation: false });
+    const [image, setImage] = useState();
 
     useEffect(() => {
         if (mode === 'Edit') {
@@ -40,12 +41,15 @@ const RecipeForm = ({
         history.push(`/recipes/${recipeId}/details`);
     }
 
+    const imageHandler = (e) => {
+        setImage(e.target.files[0]);
+    }
+
     async function onSubmitHandler(e) {
         e.preventDefault();
 
         const name = validators.nameValidator(e.target.name.value.trim());
         const image = e.target.image?.files[0];
-        // const imageURL = validators.urlValidator(e.target.imageURL.value.trim());
         const ingredients = validators.ingredientsValidator(e.target.ingredients.value.split(',').map(x => x.trim()));
         const prepTime = validators.prepTimeValidator(Number(e.target.prepTime.value.trim()));
         const preparation = validators.preparationValidator(e.target.preparation.value.trim());
@@ -158,21 +162,21 @@ const RecipeForm = ({
                     <label htmlFor="recipe-name">Recipe Name</label>
                     <input type="text" name="name" id="recipe-name" defaultValue={loaded ? recipe.name : ''} />
                     <span className={errors.name ? 'error visible' : 'error'}>{errors.name}</span>
-                    {/* <label htmlFor="image-url">Image</label> */}
                     {mode === 'Add' ?
                         <>
-                            <label htmlFor="recipe-img">Image</label>
-                            <input type="file" name="image" id="recipe-img" accept="image/*" />
+                            <label htmlFor="recipe-img" className="recipe-img-select-label">Select image</label>
+                            <input type="file" name="image" id="recipe-img" className="recipe-img-select" accept="image/*" onInputCapture={imageHandler} />
+                            {image
+                                ?
+                                <div className="img-preview">
+                                    <img src={URL.createObjectURL(image)} alt="preview" />
+                                </div>
+                                :
+                                null}
                         </>
                         : null
                     }
-                    {/* {mode === 'Edit' ?
-                        <div className="recipe-image-preview">
-                            <img src={recipe.imageURL} alt="recipe-img" />
-                        </div> :
-                        null} */}
                     <span className={mode === 'Add' && errors.image ? 'error visible' : 'error'}>{errors.image}</span>
-                    {/* <span className={errors.imageURL ? 'error visible' : 'error'}>{errors.imageURL}</span> */}
                     <label htmlFor="ingredients">Ingredients</label>
                     <textarea name="ingredients" id="ingredients" cols="30" rows="7" placeholder="Please add ingredients separated by comma." defaultValue={loaded ? recipe.ingredients.join(', ') : ''}></textarea>
                     <span className={errors.ingredients ? 'error visible' : 'error'}>{errors.ingredients}</span>

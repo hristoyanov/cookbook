@@ -76,8 +76,6 @@ const RecipeDetails = ({
     }
 
     const onChangeImageClickHandler = (e) => {
-        e.preventDefault();
-
         setImage(e.target.files[0]);
         setShowDialog(true);
     }
@@ -94,14 +92,21 @@ const RecipeDetails = ({
                         <h1 className="recipe-details-title">
                             {recipe.name}
                         </h1>
-                        {user && user.uid === recipe.ownerId ? <RecipeOwnerControl id={match.params.id} ownerId={recipe.ownerId} history={history} recipe={recipe} /> : ''}
+                        {user && user.uid === recipe.ownerId ?
+                            <RecipeOwnerControl id={match.params.id} ownerId={recipe.ownerId} history={history} recipe={recipe} />
+                            : null}
                         <div className="recipe-details-prep-time">
                             <i className="far fa-clock"></i>{recipe.prepTime} {recipe.prepTime === 1 ? 'minute' : 'minutes'}
                         </div>
                         <article className="recipe-details-content">
                             <div className="recipe-details-content-img">
                                 <img src={recipe.imageURL} alt="recipe-img" />
-                                <input type="file" name="image" id="image" accept="image/*" onInputCapture={onChangeImageClickHandler} />
+                                {user && user.uid === recipe.ownerId ?
+                                    <>
+                                        <label htmlFor="image" className="recipe-details-content-img-change-label"><i className="fas fa-pen"></i></label>
+                                        <input type="file" name="image" id="image" accept="image/*" className="recipe-details-content-img-change-input" onInputCapture={onChangeImageClickHandler} />
+                                    </>
+                                    : null}
                             </div>
                             <div className="recipe-details-content-ingredients">
                                 <h2 className="recipe-details-content-ingredients-heading">

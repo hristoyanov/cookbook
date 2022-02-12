@@ -30,11 +30,34 @@
     max-height: 400px;
 }
 
+.recipe-details-content-img {
+    position: relative;
+}
+
 .recipe-details-content-img img {
     width: 400px;
     height: 400px;
     object-fit: cover;
     border-radius: 10px;
+}
+
+.recipe-details-content-img-change-label {
+    position: absolute;
+    bottom: 10px;
+    right: 11px;
+    cursor: pointer;
+    font-size: 20px;
+    color: black;
+    background: orange;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+
+.recipe-details-content-img-change-input {
+    position: absolute;
+    display: none;
+    bottom: 10px;
+    right: 15px;
 }
 
 .recipe-details-content h2 {
