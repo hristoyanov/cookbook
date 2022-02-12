@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase';
+
 import { useAuthContext } from '../../contexts/AuthContext';
-import { getUserProfile, getRecipe } from '../../services/services';
+import { getUserProfile, getRecipe, editRecipe, deleteRecipeImage } from '../../services/services';
 import RecipeOwnerControl from './RecipeOwnerControl/RecipeOwnerControl';
 import RecipeLikes from './RecipeLikes/RecipeLikes';
 import CommentSection from './CommentSection/CommentSection';
+import ConfirmDialog from '../common/ConfirmDialog/ConfirmDialog';
 
 import './RecipeDetails.css';
 
@@ -19,6 +23,8 @@ const RecipeDetails = ({
     const [recipe, setRecipe] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [userProfile, setUserProfile] = useState({});
+    const [showDialog, setShowDialog] = useState(false);
+    const [image, setImage] = useState();
 
     useEffect(() => {
         let mounted = true;
@@ -47,6 +53,35 @@ const RecipeDetails = ({
         }
     }, [match, recipe.ownerId]);
 
+    const changeImageHandler = () => {
+        try {
+            const storageRef = ref(storage, `${user.uid}/recipe-images/` + String(Date.now()) + image.name);
+            const uploadTask = uploadBytesResumable(storageRef, image);
+
+            uploadTask.on('state_changed', null, null, () => {
+                getDownloadURL(uploadTask.snapshot.ref)
+                    .then((url) => {
+                        editRecipe(
+                            { imageURL: url }, match.params.id
+                        ).then(() => {
+                            deleteRecipeImage(recipe.imageURL);
+                        }).then(() => {
+                            setRecipe({ ...recipe, imageURL: url });
+                        }).then(() => setShowDialog(false));
+                    });
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const onChangeImageClickHandler = (e) => {
+        e.preventDefault();
+
+        setImage(e.target.files[0]);
+        setShowDialog(true);
+    }
+
     return (
         isLoading
             ? <h1>Loading recipe...</h1>
@@ -66,6 +101,7 @@ const RecipeDetails = ({
                         <article className="recipe-details-content">
                             <div className="recipe-details-content-img">
                                 <img src={recipe.imageURL} alt="recipe-img" />
+                                <input type="file" name="image" id="image" accept="image/*" onInputCapture={onChangeImageClickHandler} />
                             </div>
                             <div className="recipe-details-content-ingredients">
                                 <h2 className="recipe-details-content-ingredients-heading">
@@ -94,6 +130,7 @@ const RecipeDetails = ({
                         {!user || user?.uid === recipe?.ownerId ? null : <RecipeLikes likesArr={recipe.likes} recipeId={match.params.id} />}
                     </article>
                     {!isLoading && !recipe.hidden ? <CommentSection user={user} recipe={recipe} recipeId={match.params.id} /> : null}
+                    <ConfirmDialog show={showDialog} onClose={() => { setShowDialog(false); setRecipe({ ...recipe }) }} onSave={changeImageHandler} title="Change recipe image?" />
                 </section>
     );
 }
