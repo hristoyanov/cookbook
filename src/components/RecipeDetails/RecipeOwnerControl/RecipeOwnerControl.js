@@ -35,8 +35,8 @@ const RecipeOwnerControl = ({
     return (
         <div className="recipe-details-buttons-container">
             <ConfirmDialog show={showDeleteDialog} onClose={() => setShowDeleteDialog(false)} onSave={deleteHandler} title="Delete this recipe?" />
-            <button className="edit-btn" onClick={() => history.push(`/recipes/${id}/edit`)}>Edit</button>
-            <button className="delete-btn" onClick={onDeleteClickHandler}>Delete</button>
+            <button className="edit-btn" onClick={() => history.push(`/recipes/${id}/edit`)}><i className="fas fa-pen"></i></button>
+            <button className="delete-btn" onClick={onDeleteClickHandler}><i className="fas fa-trash"></i></button>
         </div>
     );
 }

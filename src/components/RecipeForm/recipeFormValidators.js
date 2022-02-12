@@ -2,10 +2,6 @@ export const nameValidator = (name) => {
     return name.length > 2 && name.length <= 50 ? name : false;
 }
 
-export const urlValidator = (url) => {
-    return url.startsWith('https://') ? url : false;
-}
-
 export const ingredientsValidator = (array) => {
     const uniqueIngredients = new Set(array);
 
