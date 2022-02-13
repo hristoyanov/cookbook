@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { auth, signInWithEmailAndPassword } from '../../firebase';
 
 const SignIn = ({ history }) => {
-    const [errors, setErrors] = useState({ password: false });
+    const [errors, setErrors] = useState({ email: false, password: false });
 
     const onSignInSubmitHandler = (e) => {
         e.preventDefault();
@@ -21,8 +21,16 @@ const SignIn = ({ history }) => {
                 history.push('/recipes');
             })
             .catch((error) => {
+                if (error.code === 'auth/user-not-found') {
+                    setErrors(state => ({ ...state, email: 'No such user.' }));
+                } else {
+                    setErrors(state => ({ ...state, email: false }));
+                }
+
                 if (error.code === 'auth/wrong-password') {
                     setErrors(state => ({ ...state, password: 'Wrong password.' }));
+                } else {
+                    setErrors(state => ({ ...state, password: false }));
                 }
 
                 console.log(error.code, error.message);
@@ -38,6 +46,7 @@ const SignIn = ({ history }) => {
                     <legend>Sign In</legend>
                     <label htmlFor="email">Email</label>
                     <input type="email" name="email" id="email" required />
+                    <span className={errors.email ? 'error visible' : 'error'}>{errors.email}</span>
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" id="password" required />
                     <span className={errors.password ? 'error visible' : 'error'}>{errors.password}</span>
