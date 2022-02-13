@@ -5,6 +5,7 @@
     border-radius: 10px;
     color: white;
     flex-basis: 20%;
+    max-width: 20%;
 }
 
 .recipes-list-item-title {

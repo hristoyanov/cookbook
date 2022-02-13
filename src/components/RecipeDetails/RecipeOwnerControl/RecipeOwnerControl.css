@@ -1,10 +1,10 @@
 .recipe-details-buttons-container {
     position: absolute;
-    top: 5%;
-    right: 0%;
-    display: flex;
-    justify-content: space-evenly;
-    width: 10%;
+    top: 8%;
+    right: 4%;
+    /* display: flex;
+    justify-content: space-evenly; */
+    /* width: 10%; */
 }
 
 .edit-btn,
@@ -15,4 +15,10 @@
     border: none;
     color: white;
     padding: 0;
+}
+
+.edit-btn {
+    margin-right: 20px;
+    padding-right: 20px;
+    border-right: 1px solid white;
 }

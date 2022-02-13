@@ -211,13 +211,19 @@ form select {
 
     .recipe-details-buttons-container {
         margin-right: 15px;
-        flex-direction: row;
         top: 4%;
         right: 4%;
     }
 
     .edit-btn {
-        margin-right: 10px;
+        margin-right: 15px;
+        padding-right: 15px;
+        font-size: 16px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        font-size: 20px;
     }
 
     .comment-section {
