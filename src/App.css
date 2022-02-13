@@ -171,6 +171,7 @@ form select {
 
     .recipes-list-item {
         margin: 10px 15px;
+        max-width: 100%;
     }
 
     .recipes-list-item-img img,
@@ -271,10 +272,28 @@ form select {
     }
 }
 
-@media screen and (min-width: 550px) and (max-width: 1024px) {
+@media screen and (min-width: 550px) and (max-width: 749px) {
     .recipes-list-item-img img,
     .recipe-details-content-img img {
         width: 475px;
         height: 475px;
+    }
+}
+
+@media screen and (min-width: 750px) and (max-width: 1024px) {
+    .recipes-list,
+    .user-recipes-list {
+        flex-direction: row;
+    }
+    
+    .recipes-list-item {
+        flex-basis: 40%;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1439px) {
+    .recipes-list-item {
+        flex-basis: 30%;
+        max-width: 30%;
     }
 }
