@@ -4,8 +4,8 @@ An application for sharing cooking recipes. Users can view, create and like reci
 
 App can be found at <https://cookbook-f1450.web.app>
 
-Quick sign in:
-Email: test.user@test.com
+Quick sign in:  
+Email: test.user@test.com  
 Password: 123456
 
 ## Basic functionality
