@@ -21,7 +21,7 @@ const CommentSection = ({
     useEffect(() => {
         getRecipe(recipeId)
             .then(res => {
-                setRecipeComments(res.comments);
+                setRecipeComments([...res.comments]);
             })
             .catch(error => console.log(error));
     }, [recipeId, commentCounter]);
@@ -45,6 +45,7 @@ const CommentSection = ({
         } else {
             modifyRecipeComment(recipeId, user, content, commentToEdit)
                 .then(() => {
+                    setCommentToEdit({});
                     setCommentCounter(state => state + 1);
 
                 })
@@ -68,6 +69,7 @@ const CommentSection = ({
             .then(() => {
                 commentTextAreaRef.current.value = '';
 
+                setCommentToDelete({});
                 setCommentCounter(state => state + 1);
             })
             .catch(error => console.log(error))
