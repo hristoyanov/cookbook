@@ -19,13 +19,11 @@ const CommentSection = ({
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
     useEffect(() => {
-        setTimeout(() => {
-            getRecipe(recipeId)
-                .then(res => {
-                    setRecipeComments([...res.comments]);
-                })
-                .catch(error => console.log(error))
-        }, 500);
+        getRecipe(recipeId)
+            .then(res => {
+                setRecipeComments(res.comments);
+            })
+            .catch(error => console.log(error));
     }, [recipeId, commentCounter]);
 
     const commentTextAreaRef = createRef();
@@ -39,15 +37,21 @@ const CommentSection = ({
 
         if (!commentToEdit.id) {
             addRecipeComment(recipeId, user.uid, user.displayName, content)
+                .then(() => {
+                    setCommentCounter(state => state + 1);
+
+                })
                 .catch(error => console.log(error));
         } else {
             modifyRecipeComment(recipeId, user, content, commentToEdit)
+                .then(() => {
+                    setCommentCounter(state => state + 1);
+
+                })
                 .catch(error => console.log(error));
         }
 
         commentTextAreaRef.current.value = '';
-
-        setCommentCounter(state => state + 1);
     }
 
     const editCommentClickHandler = (commentId) => {
